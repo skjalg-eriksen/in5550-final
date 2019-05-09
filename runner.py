@@ -113,7 +113,8 @@ def main():
 
     
     #net = convNetEncoder(token_field.vocab, label_field.vocab)
-    net = MLP(token_field.vocab, label_field.vocab)
+    encoder = self_attention_Encoder2(token_field.vocab)
+    net = MLP(token_field.vocab, label_field.vocab, encoder)
     
     print(sum(p.numel() for p in net.parameters() if p.requires_grad))
 
