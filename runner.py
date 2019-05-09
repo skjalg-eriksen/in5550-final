@@ -112,8 +112,8 @@ def main():
     dev_iter = data.Iterator(dev_dataset, batch_size=1, train=False, sort=False)
 
     
-    net = convNetEncoder(token_field.vocab, label_field.vocab)
-    #net = MLP(token_field.vocab, label_field.vocab)
+    #net = convNetEncoder(token_field.vocab, label_field.vocab)
+    net = MLP(token_field.vocab, label_field.vocab)
     
     print(sum(p.numel() for p in net.parameters() if p.requires_grad))
 

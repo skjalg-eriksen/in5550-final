@@ -100,9 +100,10 @@ class convNetEncoder(nn.Module):
 class MLP(nn.Module):
     def __init__(self, token_vocab, tag_vocab, input_size=1024, hidden_size=512):
         super().__init__()
-        self.encoder = self_attention_Encoder2(token_vocab)
+        attention_hops=3
+        self.encoder = self_attention_Encoder3(token_vocab, attention_hops=attention_hops)
         
-        self.MLP = nn.Sequential(nn.Linear(input_size*32, hidden_size), # input layer
+        self.MLP = nn.Sequential(nn.Linear(input_size*2*attention_hops*4, hidden_size), # input layer
                                  nn.ReLU(), # hidden layer
                                  nn.Linear(hidden_size, len(tag_vocab))) # ouput layer
     def forward(self, batch):
@@ -265,4 +266,92 @@ class self_attention_Encoder2(nn.Module):
         u = u.transpose(1,0)
         
         u = torch.cat([v for v in u], dim=1)
+        return u
+
+class self_attention_Encoder3(nn.Module):
+    def __init__(self, token_vocab, hidden_size=1024, dimension_a=100, attention_hops=3):
+        super().__init__()
+        self.hidden_size = hidden_size
+        
+        # word embeddings
+        #self.embedding = nn.Embedding.from_pretrained(token_vocab.vectors)
+        self.embedding = nn.Embedding(len(token_vocab), 300, padding_idx=token_vocab.stoi['<pad>']).from_pretrained(token_vocab.vectors)
+
+        # to achive bi-direction i stack 2 LSTMCells, one for each direction; RNN_1 (->), RNN_2 (<-)
+        self.RNN_1 = nn.LSTMCell(token_vocab.vectors.shape[1], hidden_size, bias=True)
+        self.RNN_2 = nn.LSTMCell(token_vocab.vectors.shape[1], hidden_size, bias=True)
+        
+        #self.RNN_1 = nn.RNNCell(token_vocab.vectors.shape[1], hidden_size, bias=True)
+        #self.RNN_2 = nn.RNNCell(token_vocab.vectors.shape[1], hidden_size, bias=True)
+        
+        
+        # alpha weights
+        Ws1 = torch.zeros(dimension_a, hidden_size*2)
+        nn.init.normal_(Ws1, mean=0.0, std=1.0)
+        self.Ws1 = nn.Parameter(Ws1)
+        
+        Ws2 = torch.zeros(attention_hops, dimension_a)
+        nn.init.normal_(Ws2, mean=1.0, std=1.0)
+        self.Ws2 = nn.Parameter(Ws2)
+        
+    def forward(self, sentence):
+        tokens, _ = sentence;
+        batch_size = len(_)
+        H_1 = [] # layer 1, ->
+        H_2 = [] # layer 2, <-
+        A = [] # softmax(ws2*tanh(ws1*Ht))
+        
+        # get embedding vectors
+        embedded = self.embedding(tokens)
+        embedded = embedded.transpose(1,0)
+     
+        
+        # initial word for layer 1
+        hidden_state = self.RNN_1(embedded[0])
+        H_1.append(hidden_state)
+        
+        # layer 1 RNN
+        for token in embedded[1:]:
+            hidden_state = self.RNN_1(token, hidden_state)
+            H_1.append(hidden_state)
+        
+        # flip the words to do layer 2
+        embedded = torch.flip(embedded, [0])
+        
+        # initial word for layer 2
+        hidden_state = self.RNN_2(embedded[0])
+        H_2.append(hidden_state)
+       
+        # layer 2 RNN
+        for token in embedded[1:]:
+            hidden_state = self.RNN_2(token, hidden_state)
+            H_2.append(hidden_state)
+       
+        #flip H_2 so the hidden states line up with H_1
+        H_2.reverse()
+        
+        # concat each hidden states for H_1, H_2
+        H = []
+        for h1, h2 in zip(H_1, H_2):
+            H.append(torch.cat([h1[0], h2[0]], dim=1))
+
+        H = torch.stack(H) # turn python list of tensors into 1 tensor for the hidden states
+        H = H.transpose(1,0)
+        
+        a = [ F.softmax(self.Ws2 @ F.tanh(self.Ws1 @ h.t()), dim=1) for h in H ]
+        
+        # attention distrubution
+        A = torch.stack(a)
+        #go through all in batch and do operation
+        v = []
+        for a, h in zip(A,H):
+            v.append(a@h)
+        u = torch.stack(v)
+        #print('u',u.shape)
+        
+        u_ = [ torch.cat([v for v in u_], dim=-1) for u_ in u ]
+        u = torch.stack(u_)
+       
+        #print('U',u.shape)
+        # batch_size x attention_hops x hidden_size*2
         return u
