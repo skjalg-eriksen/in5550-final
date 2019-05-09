@@ -32,59 +32,67 @@ class myInferenceModel(nn.Module):
         print(vec.shape)
         return self.MLP( )
     
-class Encoder(nn.Module):
-    def __init__(self, token_vocab):
+class convNetEncoder(nn.Module):
+# hierarchical convnet architecture
+    def __init__(self, token_vocab, tag_vocab):
         super().__init__()
-        self._embeds = nn.Embedding.from_pretrained(token_vocab.vectors)
         
+        input_size = token_vocab.vectors.shape[1]*16 # output size of the encoder
+        hidden_state_size = 512
+        #self._embeds = nn.Embedding.from_pretrained(token_vocab.vectors)
+        self._embeds = nn.Embedding(len(token_vocab), 300, padding_idx=token_vocab.stoi['<pad>']).from_pretrained(token_vocab.vectors)
+        # define the rest of your components
         self._conv1 = nn.Conv1d(in_channels=token_vocab.vectors.shape[1],
-                                out_channels=100,
-                                kernel_size=2, 
-                                padding=4)
-        self._conv2 = nn.Conv1d(in_channels=token_vocab.vectors.shape[1],
-                                out_channels=100,
+                                out_channels=token_vocab.vectors.shape[1],
                                 kernel_size=3, 
-                                padding=4)
+                                padding=1)
+        self._conv2 = nn.Conv1d(in_channels=token_vocab.vectors.shape[1],
+                                out_channels=token_vocab.vectors.shape[1],
+                                kernel_size=3, 
+                                padding=1)
         self._conv3 = nn.Conv1d(in_channels=token_vocab.vectors.shape[1],
-                                out_channels=100,
-                                kernel_size=4, 
-                                padding=4)
+                                out_channels=token_vocab.vectors.shape[1],
+                                kernel_size=3, 
+                                padding=1)
+        self._conv4 = nn.Conv1d(in_channels=token_vocab.vectors.shape[1],
+                                out_channels=token_vocab.vectors.shape[1],
+                                kernel_size=3, 
+                                padding=1)
 
-        self._rnn = nn.RNN(input_size=300, 
-                           hidden_size=150, 
-                           num_layers=2,
-                           bidirectional=True,
-                           batch_first=True)
-        self._out = nn.Linear(300, 150)
-
-    def forward(self, sentence):
-        tokens, lengths = sentence
-
-        # embeddings go here
-        embeds = self._embeds(tokens).transpose(1, 2)
-       
-        # conv + pooling
-        c1 = self._conv1(embeds)
-        c2 = self._conv2(embeds)
-        c3 = self._conv3(embeds)
+        self.MLP = nn.Sequential(nn.Linear(input_size, hidden_state_size), # input layer
+                                 nn.ReLU(), # hidden layer
+                                 nn.Linear(hidden_state_size, len(tag_vocab))) # ouput layer
+    def forward(self, batch):
+        verbose = False
+        #tokens, lengths = batch
+        tokens = [batch.sentence1_tok, batch.sentence2_tok]
         
-        p1 = F.relu(F.max_pool1d(c1, 2))
-        p2 = F.relu(F.max_pool1d(c2, 2))
-        p3 = F.relu(F.max_pool1d(c3, 2))
-        max_dim = max(i.size(-1) for i in [p1, p2, p3])
-
-        # funky padding stuff because of pooling  
-        p1 = F.pad(p1, (0, max_dim-p1.size(-1)), 'constant', 0)
-        p2 = F.pad(p2, (0, max_dim-p2.size(-1)), 'constant', 0)
-        p3 = F.pad(p3, (0, max_dim-p3.size(-1)), 'constant', 0)
-
-        rnn_input = torch.cat([p1, p2, p3], dim=1)
-        rnn_input = rnn_input.transpose(1, 2)
+        for i, token in enumerate(tokens):
+            token, lengths = token
+            
+            # embeddings go here
+            embeds = self._embeds(token).transpose(1, 2)
+            if verbose: print("embeds",embeds.shape)
+            # conv + pooling
+            c1 = self._conv1(embeds)
+            if verbose: print("c1",c1.shape)
+            c2 = self._conv2(c1)
+            if verbose: print("c2",c2.shape)
+            c3 = self._conv3(c2)
+            if verbose: print("c3",c3.shape)
+            c4 = self._conv4(c2)
+            if verbose: print("c4",c4.shape)
+            #tokens[i] = F.dropout(torch.cat([c1.max(dim=-1)[0], c2.max(dim=-1)[0], c3.max(dim=-1)[0], c4.max(dim=-1)[0]], dim=1), p=0.33, training=self.training)
+            tokens[i] = torch.cat([c1.max(dim=-1)[0], c2.max(dim=-1)[0], c3.max(dim=-1)[0], c4.max(dim=-1)[0]], dim=1)
+            if verbose: print("sentence {}".format(i), tokens[i].shape)
         
-        # recurrent
-        rnn_out = self._rnn(rnn_input)[0]
-        rnn_out = rnn_out[:,-1]
+        u, v = tokens
         
-        return self._out(rnn_out)
-
+        # [u,v |u-v|, u*v]
+        a = torch.cat([u, v], dim=1)
+        b = torch.abs(u-v)
+        c = u*v
+        vec = torch.cat([a, b, c], dim=1)
+        if verbose: print('vec', vec.shape)
+        return self.MLP(vec)
 
