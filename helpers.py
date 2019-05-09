@@ -8,8 +8,25 @@ from gensim import utils, models
 import logging
 import zipfile
 import json
+from torchtext.data import Example
 import torch
-from torch.utils import data
+
+# function for loading jsonl files provided for track 2 dataset where there are json objects on every line
+def load_jsonl_examples(path, fields):
+    """
+    :param path: path to jsonl file with json examples seperated by line-break
+    :param fields: list with tuples for each field
+    :return: list containing torchtext.data.example objects
+    """
+    examples = []
+    # open file f from path
+    with open(path) as f:
+        # extract json dict from every line
+        for line in f:
+            #json_list.append(json.loads(line))
+            examples.append(Example.fromlist(json.loads(line).items(), fields))
+    # return list
+    return examples
 
 # since any argument passed to parser in command line to a bool type will be interpeted as true this function fixes that.
 def correctBoolean (value, flag):
@@ -177,14 +194,6 @@ def eval_func(batched_data, model2use):
         total += len(gold_label)
     accuracy = correct / total
     return accuracy, predicted, gold_label
-
-def generate_dataset(input_features, gold_classes):
-    # This function creates a PyTorch object for the data
-
-    torch_input_features = torch.from_numpy(input_features)
-    torch_gold_classes = torch.from_numpy(gold_classes)
-    dataset = data.TensorDataset(torch_input_features, torch_gold_classes)
-    return dataset
 
     
 def load_embeddings(embeddings_file, limit=None):
