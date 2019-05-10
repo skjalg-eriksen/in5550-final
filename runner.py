@@ -44,19 +44,24 @@ def evaluate(model, iterator, criterion, epoch, writer=None):
     model.eval()
     accuracy, total = 0, 0
     total_loss = 0
+    
     for n, batch in enumerate(iterator):
         prediction = model(batch)
         predictions = prediction.argmax(dim=-1)
+        
         gold = batch.gold_label
-        loss = criterion(prediction, gold)
-        total_loss += loss
+        #loss = criterion(prediction, gold)
+        #loss = F.cross_entropy(prediction, gold)
+        #total_loss += loss
+        
         accuracy += (predictions == gold).nonzero().size(0)
         total += predictions.size(0)
-        if writer is not None: writer.add_scalar('Dev/Loss', loss, n)
+        
+        #if writer is not None: writer.add_scalar('Dev/Loss', loss, n)
     
-    if writer is not None: writer.add_scalar('Dev/total_loss', total_loss, epoch)
-    if writer is not None: writer.add_scalar('Dev/mean_loss', total_loss/total, epoch)
-    if writer is not None: writer.add_scalar('Dev/accuracy', accuracy/total, epoch)
+    #if writer is not None: writer.add_scalar('Dev/total_loss', total_loss, epoch)
+    #if writer is not None: writer.add_scalar('Dev/mean_loss', total_loss/total, epoch)
+    #if writer is not None: writer.add_scalar('Dev/accuracy', accuracy/total, epoch)
     print("> dev accuracy: {}/{} = {}".format(accuracy, total, accuracy/total))
 
 def main():
@@ -113,7 +118,7 @@ def main():
 
     
     #net = convNetEncoder(token_field.vocab, label_field.vocab)
-    encoder = self_attention_Encoder2(token_field.vocab)
+    encoder = self_attention_Encoder2(token_field.vocab, args.batch_size)
     net = MLP(token_field.vocab, label_field.vocab, encoder)
     
     print(sum(p.numel() for p in net.parameters() if p.requires_grad))

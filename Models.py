@@ -91,7 +91,7 @@ class convNetEncoder(nn.Module):
 
 #https://arxiv.org/pdf/1703.03130.pdf
 class self_attention_Encoder2_2(nn.Module):
-    def __init__(self, token_vocab, hidden_size=1024, dimension_a=256, attention_hops=4):
+    def __init__(self, token_vocab, batch_size, hidden_size=1024, dimension_a=256, attention_hops=4):
         super().__init__()
         self.hidden_size = hidden_size
         
@@ -144,31 +144,26 @@ class self_attention_Encoder2_2(nn.Module):
         return u
 
 class self_attention_Encoder2(nn.Module):
-    def __init__(self, token_vocab, hidden_size=1024, dimension_a=256, attention_hops=4):
+    def __init__(self, token_vocab, batch_size, hidden_size=1024, dimension_a=256, attention_hops=4):
         super().__init__()
         self.hidden_size = hidden_size
+        self.d_a = dimension_a
+        self.batch_size = batch_size
         
         # word embeddings
         #self.embedding = nn.Embedding.from_pretrained(token_vocab.vectors)
-        self.embedding = nn.Embedding(len(token_vocab), 300, padding_idx=token_vocab.stoi['<pad>']).from_pretrained(token_vocab.vectors)
+        self.embedding = nn.Embedding(len(token_vocab), token_vocab.vectors.shape[1], padding_idx=token_vocab.stoi['<pad>']).from_pretrained(token_vocab.vectors)
 
         self.RNN = nn.LSTM(token_vocab.vectors.shape[1], hidden_size, bias=True, batch_first=True, bidirectional=True)
-        #self.RNN_2 = nn.LSTM(token_vocab.vectors.shape[1], hidden_size, bias=True, batch_first=True, bidirectional=True)
         
         self.MLP = nn.Sequential(nn.Linear(hidden_size*2, dimension_a), # input layer
                                  nn.Tanh(), # hidden layer
                                  nn.Linear(dimension_a, attention_hops), # ouput layer
                                  nn.Softmax(dim=1)
                                 )
-        # alpha weights
-        #Ws1 = torch.zeros(dimension_a, hidden_size*2)
-        #nn.init.normal_(Ws1, mean=0.0, std=1.0)
-        #self.Ws1 = nn.Parameter(Ws1)
-        
-        #Ws2 = torch.zeros(attention_hops, dimension_a)
-        #nn.init.normal_(Ws2, mean=1.0, std=1.0)
-        #self.Ws2 = nn.Parameter(Ws2)
-        
+        self.init_state = (torch.autograd.Variable(torch.zeros(2,self.hidden_size)),torch.autograd.Variable(torch.zeros(2,self.hidden_size)))
+
+    
     def forward(self, sentence):
         tokens, lengths = sentence;
         #print('len', lengths[0])
@@ -190,19 +185,17 @@ class self_attention_Encoder2(nn.Module):
         
         packed = torch.nn.utils.rnn.pack_padded_sequence(embedded, lengths, batch_first=True)
         
-        out, (hidden, _) = self.RNN(packed)
+        init_hidden = [self.init_state[0] for l in lengths]
+        init_cell = [self.init_state[1] for l in lengths]
+        init_hidden = torch.stack(init_hidden).transpose(1,0)
+        init_cell = torch.stack(init_cell).transpose(1,0)
+        
+        #print('init', init_hidden.shape)
+        #print('Expected',2,len(lengths), self.hidden_size)
+        
+        out, (hidden, _) = self.RNN(packed, (init_hidden,init_cell))
         out, _ = torch.nn.utils.rnn.pad_packed_sequence(out, batch_first=True)
-        #hidden = torch.cat([h for h in hidden], dim=1)
-        #print('hidden', hidden.data.shape)
-        #for h in out.transpose(0,1):
-            #A.append(F.softmax(self.Ws2 @ F.tanh(self.Ws1 @ h.t()), dim=1))
-        #view(num_layers, num_directions, batch, hidden_size)
-        #print('hidden',hidden.shape)
-        #print('out',out.shape)   
-        #a = [ F.softmax(self.Ws2 @ F.tanh(self.Ws1 @ h.t()), dim=1) for h in out ]
-        # attention distrubution
-        #A = torch.stack(a)
-        #print('out',out.transpose(0,1).shape, 'A', A.shape)
+ 
         A = self.MLP(out).transpose(2,1)
         u = A@out
         
@@ -217,4 +210,4 @@ class self_attention_Encoder2(nn.Module):
         u = torch.cat([v for v in u], dim=1)
         #print('rep u', u.shape)
         return u
-        
+     
