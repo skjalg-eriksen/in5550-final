@@ -148,9 +148,14 @@ class sentenceEmbeddingEncoder(nn.Module):
         # make attention distrubution with MLP, where output will be a softmaxed distrubution
         A = self.MLP(out).transpose(2,1)
         
-        # get weighted attention
+        # get weighted attention sentence matrix u
         u = A @ out
-        
+        #print('A',A.shape)
+        #print('u', u.shape)
+        # redundancy messure
+        #P = A @ A.transpose(2,1) 
+        #P = P - torch.matrix_power(P, 0) # matrix power 0 returns identity matrix
+        #print('P', P.shape)
         # add the sentence embedding u_ in u to the batch list
         for i, u_ in enumerate(u):
             batch[i][3] = u_
@@ -163,4 +168,41 @@ class sentenceEmbeddingEncoder(nn.Module):
         # concatinate the attention vectors
         u = torch.cat([v for v in u], dim=1)
         return u
-     
+    
+    def visualizeExmaple(self, Example):
+        tokens, lengths = Example
+        
+        #print(tokens, lengths)
+        
+        # get embedding vectors
+        embedded = self.embedding(tokens)
+        
+        # pack sentence
+        packed = torch.nn.utils.rnn.pack_padded_sequence(embedded, lengths, batch_first=True)
+        
+        # for each sentence in batch use a initial hidden state init_hidden, and a initial cell state init_cell
+        init_hidden = [self.init_state[0] for l in lengths]
+        init_cell = [self.init_state[1] for l in lengths]
+        
+        # turn lists into tensors
+        init_hidden = torch.stack(init_hidden).transpose(1,0)
+        init_cell = torch.stack(init_cell).transpose(1,0)
+        
+        # get rnn hidden states out
+        out, _ = self.RNN(packed, (init_hidden,init_cell))
+        out, _ = torch.nn.utils.rnn.pad_packed_sequence(out, batch_first=True)
+        
+        # make attention distrubution with MLP, where output will be a softmaxed distrubution
+        A = self.MLP(out).transpose(2,1)
+        
+        # get weighted attention sentence matrix u
+        u = A @ out
+        
+        #u = u.transpose(1,0)
+        
+        # concatinate the attention vectors
+        #u = torch.cat([v for v in u], dim=1)
+        
+        
+        return u, A
+    
