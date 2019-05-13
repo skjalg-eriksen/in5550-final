@@ -16,6 +16,7 @@ set -o errexit
 
 module purge
 module use -a /projects/nlpl/software/modulefiles/
+module load nlpl-in5550/201901/3.7
 module add nlpl-in5550
 
 echo $SUBMITDIR
