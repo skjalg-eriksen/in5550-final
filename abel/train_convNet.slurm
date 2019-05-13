@@ -24,4 +24,4 @@ echo $SUBMITDIR
 #'sentenceEmbedding', 'convNet', 'BiLSTM', 'LastStateEncoder'
 
 echo "train classififer convNet"
-python ../runner_abel.py --dir $SUBMITDIR --encoder convNet --name convNet_baseLine
+python ../runner_abel.py --dir $SUBMITDIR --encoder convNet --name convNet_baseLine --embeds glove.6b.100d.txt

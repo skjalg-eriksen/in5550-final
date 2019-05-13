@@ -84,7 +84,7 @@ def main():
 
     parser = argparse.ArgumentParser()
     # paths and files
-    parser.add_argument('--train', action='store', default="./nli5550/nli5550.test.jsonl")
+    parser.add_argument('--train', action='store', default="./nli5550/nli5550.train.jsonl")
     parser.add_argument('--dev', action='store', default="./nli5550/nli5550.dev.jsonl")
     parser.add_argument('--embeds', action='store', default=None)
     parser.add_argument('--name', action='store', default=None)

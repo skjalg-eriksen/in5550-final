@@ -24,4 +24,4 @@ echo $SUBMITDIR
 #'sentenceEmbedding', 'convNet', 'BiLSTM', 'LastStateEncoder'
 
 echo "train classififer LSTM"
-python ../runner_abel.py --dir $SUBMITDIR --encoder LastStateEncoder --name LSTM_baseline
+python ../runner_abel.py --dir $SUBMITDIR --encoder LastStateEncoder --name LSTM_baseline --embeds glove.6b.100d.txt
