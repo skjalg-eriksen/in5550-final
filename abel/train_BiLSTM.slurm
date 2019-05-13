@@ -23,5 +23,5 @@ echo $SUBMITDIR
 
 #'sentenceEmbedding', 'convNet', 'BiLSTM', 'LastStateEncoder'
 
-echo "train classififer"
-python runner_abel.py --dir $SUBMITDIR --encoder BiLSTM --name BiLSTM_baseline
+echo "train classififer BiLSTM"
+python ../runner_abel.py --dir $SUBMITDIR --encoder BiLSTM --name BiLSTM_baseline
