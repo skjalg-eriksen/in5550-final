@@ -78,19 +78,19 @@ def main():
 
     parser = argparse.ArgumentParser()
     # paths and files
-    parser.add_argument('--train', action='store', default="./nli5550/nli5550.test.jsonl")
+    parser.add_argument('--train', action='store', default="./nli5550/nli5550.train.jsonl")
     parser.add_argument('--dev', action='store', default="./nli5550/nli5550.dev.jsonl")
     parser.add_argument('--embeds', action='store', default=None)
     parser.add_argument('--name', action='store', default=None)
     parser.add_argument('--dir', action='store', default="models")
     parser.add_argument('--testing', action='store', default="false")
-    parser.add_argument('--tqdm', action='store', default="true")
+    parser.add_argument('--tqdm', action='store', default="false")
     
     # optimizer and data hyperparamters
     parser.add_argument('--batch_size', action='store',type=int, default=32)
     parser.add_argument('--lr', action='store',type=float, default=1e-3)
-    parser.add_argument('--epochs', action='store', type=int, default=3)
-    parser.add_argument('--split', action='store', default=0.1, help="how much of train dataset to use")
+    parser.add_argument('--epochs', action='store', type=int, default=10)
+    parser.add_argument('--split', action='store', default=0.15, help="how much of train dataset to use")
     
     # MLP classifer hyperparameters
     parser.add_argument('--classifier_hidden_size',type=int, default=512)
