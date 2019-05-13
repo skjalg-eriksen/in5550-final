@@ -23,7 +23,6 @@ def load_jsonl_examples(path, fields):
     with open(path) as f:
         # extract json dict from every line
         for line in f:
-            #json_list.append(json.loads(line))
             examples.append(Example.fromlist(json.loads(line).items(), fields))
     # return list
     return examples
@@ -35,7 +34,6 @@ def correctBoolean (value, flag):
     :param flag: the name of the variable you are trying to assing true/false
     :return: true or false boolean depending on the string value
     """
-    print(type(value), flag)
     if value.lower() in ('true'):
         return True
     elif value.lower() in ('false'):
@@ -194,7 +192,6 @@ def eval_func(batched_data, model2use):
         total += len(gold_label)
     accuracy = correct / total
     return accuracy, predicted, gold_label
-
     
 def load_embeddings(embeddings_file, limit=None):
     # Detect the model format by its extension:

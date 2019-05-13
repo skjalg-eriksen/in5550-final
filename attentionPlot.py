@@ -55,8 +55,6 @@ def main():
     example_list = [ x for x in data_iter ]
     data_list = [x for x in data_iter.data()]
     
-    #encoder = sentenceEmbeddingEncoder(token_field.vocab)
-    #encoder.load_state_dict(torch.load(args.encoder))
     encoder = torch.load(args.encoder)
     
     if args.example is None:
@@ -74,19 +72,18 @@ def main():
     
     sentence1 = plt.subplot(211)
     sentence1.yaxis.set_major_formatter(mtick.PercentFormatter())
-    _, A = encoder.visualizeExmaple(example.sentence1_tok)
+    A = encoder.visualizeExmaple(example.sentence1_tok)
     A = torch.squeeze(A).mean(0)
     plt.bar(example_data.sentence1_tok, (A).detach().numpy()*100)
     
-    
     sentence2 = plt.subplot(212)
-    _, A = encoder.visualizeExmaple(example.sentence2_tok)
+    A = encoder.visualizeExmaple(example.sentence2_tok)
     A = torch.squeeze(A).mean(0)
     plt.bar(example_data.sentence2_tok, (A).detach().numpy()*100)
     sentence2.yaxis.set_major_formatter(mtick.PercentFormatter())
     
     fig.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=0.9, wspace=0, hspace=0.1)
-
+    
     if args.save is not None:
         plt.savefig(args.save)
     plt.show()
