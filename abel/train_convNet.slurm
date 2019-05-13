@@ -16,12 +16,12 @@ set -o errexit
 
 module purge
 module use -a /projects/nlpl/software/modulefiles/
-module load nlpl-in5550/201901/3.7
 module add nlpl-in5550
+module load nlpl-in5550/201901/3.7
 
 echo $SUBMITDIR
 
 #'sentenceEmbedding', 'convNet', 'BiLSTM', 'LastStateEncoder'
 
 echo "train classififer convNet"
-python ../runner_abel.py --dir $SUBMITDIR --encoder convNet --name convNet_baseLine --embeds glove.6b.100d.txt
+python ../runner_abel.py --dir $SUBMITDIR --encoder convNet --name convNet_baseLine --embeds glove.6B.100d.txt

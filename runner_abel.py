@@ -151,6 +151,9 @@ def main():
     train_dataset = data.Dataset( load_jsonl_examples(args.train, fields) , fields=fields).split(args.split)[0]
     dev_dataset = data.Dataset( load_jsonl_examples(args.dev, fields) , fields=fields)
     
+    print('train size',len(train_dataset))
+    print('dev size',len(dev_dataset))
+    
     if args.testing:
         dev_dataset = train_dataset
     
