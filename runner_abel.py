@@ -199,25 +199,27 @@ def main():
         predicted_dev_human = [label_field.vocab.itos[x] for x in predicted]
         
         if dev_acc <= accuracy:
-            if args.name is not None: 
+            if args.name is not None:
+                print("saving", epoch)
                 torch.save(net, '{}/{}_classifier'.format(directory, args.name))
                 torch.save(encoder, '{}/{}_encoder'.format(directory, args.name))
-                save_data = {
-                    'epoch': epoch, 
-                    'train_accuracy': train_accuracy,
-                    'train_loss': train_loss,
-                    'train_mean': train_mean_loss,
-                    'dev_accuracy': round(accuracy_score(gold_label, predicted), 3),
-                    'dev_loss': dev_loss,
-                    'dev_mean': dev_mean_loss,
-                    'Report': classification_report(gold_classes_human, predicted_dev_human, output_dict=True)
-                    }
-                print(save_data)
-                with open('{}/epochs.json'.format(directory), 'a') as outfile:
-                    json.dump(save_data, outfile)
-                    outfile.write('\n')
-    
-            dev_acc = accuracy;
+                dev_acc = accuracy;
+        
+        if args.name is not None: 
+          save_data = {
+              'epoch': epoch, 
+              'train_accuracy': train_accuracy,
+              'train_loss': train_loss,
+              'train_mean': train_mean_loss,
+              'dev_accuracy': round(accuracy_score(gold_label, predicted), 3),
+              'dev_loss': dev_loss,
+              'dev_mean': dev_mean_loss,
+              'Report': classification_report(gold_classes_human, predicted_dev_human, output_dict=True)
+              }
+          print(save_data)
+          with open('{}/epochs.json'.format(directory), 'a') as outfile:
+              json.dump(save_data, outfile)
+              outfile.write('\n')
             
 if __name__ == '__main__':
     main()   
