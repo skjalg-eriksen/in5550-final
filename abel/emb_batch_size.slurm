@@ -17,10 +17,12 @@ set -o errexit
 module purge
 module use -a /projects/nlpl/software/modulefiles/
 module add nlpl-in5550
+module load nlpl-in5550/201901/3.7
 
 echo $SUBMITDIR
 
 #'sentenceEmbedding', 'convNet', 'BiLSTM', 'LastStateEncoder'
 
-echo "train classififer"
-python runner_abel.py --dir $SUBMITDIR --name `sentenceEmbedding_batch_$1` --batch_size $1
+echo "train sentence embedding classififer with batch size $1"
+python ../runner_abel.py --dir $SUBMITDIR --name `sentenceEmbedding_batch_$1` --batch_size $1
+
