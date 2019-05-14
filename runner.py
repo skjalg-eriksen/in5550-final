@@ -25,6 +25,12 @@ def train(model, iterator, criterion, optimiser, epoch, args, writer=None):
         optimiser.zero_grad()
         
         predictions = model(batch)
+        
+        if args.encoder.lower() in 'sentenceembedding':
+          if args.encoder_penalty > 0:
+            print('penalty')
+            
+        
         gold = batch.gold_label
         loss = criterion(predictions, gold)
         
@@ -108,7 +114,7 @@ def main():
     parser.add_argument('--encoder_hidden_size',type=int, default=1024)  # sentenceEmbedding, convNet, BiLSTM, LastStateEncoder
     parser.add_argument('--encoder_attention_dim',type=int, default=512) # sentenceEmbedding
     parser.add_argument('--encoder_attention_hops',type=int, default=4)  # sentenceEmbedding
-    parser.add_argument('--encoder_penalty', default='False')            # sentenceEmbedding
+    parser.add_argument('--encoder_penalty', type=float, default=0.0)    # sentenceEmbedding
     parser.add_argument('--encoder_pooling', default='max',              # BiLSTM
                                             choices=['max', 'mean'])
     parser.add_argument('--encoder_RNN', default='LSTM')                 # LastStateEncoder

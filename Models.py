@@ -34,6 +34,7 @@ class MLP_classifier(nn.Module):
         u = self.encoder(batch.sentence1_tok)
         v = self.encoder(batch.sentence2_tok)
         
+        
         # [u, v |u-v|, u*v]
         vec = torch.cat([torch.cat([u, v], dim=1), torch.abs(u-v), u*v], dim=1)
         
