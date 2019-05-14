@@ -30,19 +30,25 @@ class MLP_classifier(nn.Module):
         print(self)
         
     def forward(self, batch):
+        p = torch.tensor(0) # penalization for similar attention dims, used only for sentenceEmbeddingEncoder
         # encode 2 sentences to fixed-lenght-representation u and v
         u = self.encoder(batch.sentence1_tok)
         v = self.encoder(batch.sentence2_tok)
         
-        
+        if isinstance(self.encoder, sentenceEmbeddingEncoder):
+            # unpacking sentence representation and penalization
+            u , p1 = u
+            v, p2 = v
+            p = (p1+p2)/2  # mean penalization between the 2 sentences
+            
         # [u, v |u-v|, u*v]
         vec = torch.cat([torch.cat([u, v], dim=1), torch.abs(u-v), u*v], dim=1)
         
         # dropout regularization
         vec = F.dropout(vec, p=self.dropout, training=self.training)
         
-        # return classification
-        return self.classifier(vec)
+        # return classification and penalty
+        return self.classifier(vec), p
         
 class convNetEncoder(nn.Module):
 # hierarchical convnet architecture
@@ -268,10 +274,9 @@ class BiLSTMEncoder(nn.Module):
         
 class sentenceEmbeddingEncoder(nn.Module):
 # structured self-attentive sentence embedding architecture, paper: https://arxiv.org/pdf/1703.03130.pdf
-    def __init__(self, token_vocab, hidden_size=1024, attention_dim=256, attention_hops=4, penalty=True):
+    def __init__(self, token_vocab, hidden_size=1024, attention_dim=256, attention_hops=4, penalty=0):
         super().__init__()
         self.penalty = penalty
-        self.P = 0 # penalization 
         # output dimension, used by MLP_classifier to determin the dimensions of the input layer
         self.output_size = hidden_size*attention_hops*2
         
@@ -341,13 +346,12 @@ class sentenceEmbeddingEncoder(nn.Module):
         # get weighted attention sentence matrix u
         u = A @ out
         
-        if self.penalty:
-            #  penalization term for redundancy
-            P =  torch.autograd.Variable(A @ A.transpose(2,1))
-            P = P - torch.matrix_power(P, 0) # matrix power 0 returns identity matrix
-            P = torch.norm(P, p='fro')
-            
-            self.P = P
+        #  penalization term for redundancy
+        p =  A @ A.transpose(2,1)
+        p = p - torch.matrix_power(p, 0) # matrix power 0 returns identity matrix
+        p = torch.norm(p, p='fro')
+        
+        p = p * self.penalty
         
         # add the sentence embedding u_ in u to the batch list
         for i, u_ in enumerate(u):
@@ -360,7 +364,7 @@ class sentenceEmbeddingEncoder(nn.Module):
         
         # concatinate the attention vectors
         u = torch.cat([v for v in u], dim=1)
-        return u
+        return u, p
     
     def AttentionExmaple(self, Example):
         tokens, lengths = Example

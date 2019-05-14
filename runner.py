@@ -18,21 +18,16 @@ def train(model, iterator, criterion, optimiser, epoch, args, writer=None):
     if args.tqdm: pbar = tqdm(total=len(iterator.data()))
     
     accuracy, total = 0, 0
-    total_loss = 0
+    total_loss, total_penalty = 0, 0
     
     iterator.init_epoch()
     for n, batch in enumerate(iterator):
         optimiser.zero_grad()
         
-        predictions = model(batch)
-        
-        if args.encoder.lower() in 'sentenceembedding':
-          if args.encoder_penalty > 0:
-            print('penalty')
-            
-        
+        predictions, penalty = model(batch)
+        total_penalty += penalty.item()
         gold = batch.gold_label
-        loss = criterion(predictions, gold)
+        loss = criterion(predictions, gold) + penalty
         
         predmax = predictions.argmax(dim=-1)
         total_loss += loss.item()
@@ -45,6 +40,8 @@ def train(model, iterator, criterion, optimiser, epoch, args, writer=None):
         if args.tqdm: pbar.set_postfix(loss=loss.item())
         if writer is not None: writer.add_scalar('Train/Loss', loss, n)
         
+    if writer is not None: writer.add_scalar('Train/total_penalty', total_penalty, epoch)
+    if writer is not None: writer.add_scalar('Train/mean_penalty', total_penalty/total, epoch)
     if writer is not None: writer.add_scalar('Train/total_loss', total_loss, epoch)
     if writer is not None: writer.add_scalar('Train/mean_loss', total_loss/total, epoch)
     if writer is not None: writer.add_scalar('Train/accuracy', accuracy/total, epoch)
@@ -64,7 +61,7 @@ def evaluate(model, iterator, epoch, args, writer=None):
     loss = 0
     
     for n, batch in enumerate(iterator):
-        out = model(batch)
+        out, _ = model(batch)
         predictions = out.argmax(dim=-1)
         predicted.append(predictions)
         gold = batch.gold_label
@@ -75,8 +72,9 @@ def evaluate(model, iterator, epoch, args, writer=None):
         
         if args.tqdm: pbar.update( len(batch) ) # batch_size
         if args.tqdm: pbar.set_postfix(accuracy=accuracy/total)
-        
-        
+    
+    if writer is not None: writer.add_scalar('Dev/mean_loss', loss/total, epoch)    
+    if writer is not None: writer.add_scalar('Dev/total_loss', loss, epoch)
     if writer is not None: writer.add_scalar('Dev/accuracy', accuracy/total, epoch)
     if args.tqdm: pbar.close()
     
@@ -124,7 +122,6 @@ def main():
     args = parser.parse_args()
     
     # get True boolean values for input arguments using them. (args gets strings, strings that is not None == true)
-    args.encoder_penalty = correctBoolean(args.encoder_penalty, 'encoder_penalty')
     args.testing = correctBoolean(args.testing, 'testing')
     args.tqdm = correctBoolean(args.tqdm, 'tqdm')
     
@@ -189,7 +186,7 @@ def main():
     
     # encoder model, setenceEmbedding, convNet, BiLSTM, LastStateEncoder
     if args.encoder.lower() in 'sentenceembedding':
-        encoder = sentenceEmbeddingEncoder(token_field.vocab, args.encoder_hidden_size, args.encoder_attention_dim, args.encoder_attention_hops)
+        encoder = sentenceEmbeddingEncoder(token_field.vocab, args.encoder_hidden_size, args.encoder_attention_dim, args.encoder_attention_hops, args.encoder_penalty)
     elif args.encoder.lower() in 'convnet':
         encoder = convNetEncoder(token_field.vocab, args.encoder_hidden_size, args.encoder_kernel_size, args.encoder_padding)
     elif args.encoder.lower() in 'bilstm':
