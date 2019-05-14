@@ -12,21 +12,22 @@ import json
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
 
-def train(model, iterator, criterion, optimiser, epoch, args):
+def train(model, iterator, criterion, optimiser, epoch, args, writer=None):
     model.train()
     
     if args.tqdm: pbar = tqdm(total=len(iterator.data()))
     
     accuracy, total = 0, 0
-    total_loss = 0
+    total_loss, total_penalty = 0, 0
     
     iterator.init_epoch()
     for n, batch in enumerate(iterator):
         optimiser.zero_grad()
         
-        predictions = model(batch)
+        predictions, penalty = model(batch)
+        total_penalty += penalty.item()
         gold = batch.gold_label
-        loss = criterion(predictions, gold)
+        loss = criterion(predictions, gold) + penalty
         
         predmax = predictions.argmax(dim=-1)
         total_loss += loss.item()
@@ -37,11 +38,12 @@ def train(model, iterator, criterion, optimiser, epoch, args):
         optimiser.step()
         if args.tqdm: pbar.update( len(batch) ) # batch_size
         if args.tqdm: pbar.set_postfix(loss=loss.item())
-
+       
+    
     if args.tqdm: pbar.close()
     return accuracy/total, total_loss, total_loss/total
 
-def evaluate(model, iterator, epoch, args):
+def evaluate(model, iterator, epoch, args, writer=None):
     model.eval()
     
     if args.tqdm: pbar = tqdm(total=len(iterator.data()))
@@ -53,7 +55,7 @@ def evaluate(model, iterator, epoch, args):
     loss = 0
     
     for n, batch in enumerate(iterator):
-        out = model(batch)
+        out, _ = model(batch)
         predictions = out.argmax(dim=-1)
         predicted.append(predictions)
         gold = batch.gold_label
@@ -64,8 +66,7 @@ def evaluate(model, iterator, epoch, args):
         
         if args.tqdm: pbar.update( len(batch) ) # batch_size
         if args.tqdm: pbar.set_postfix(accuracy=accuracy/total)
-        
-        
+    
     if args.tqdm: pbar.close()
     
     print("> dev accuracy: {}/{} = {}".format(accuracy, total, accuracy/total))
@@ -89,8 +90,8 @@ def main():
     # optimizer and data hyperparamters
     parser.add_argument('--batch_size', action='store',type=int, default=32)
     parser.add_argument('--lr', action='store',type=float, default=1e-3)
-    parser.add_argument('--epochs', action='store', type=int, default=10)
-    parser.add_argument('--split', action='store', default=0.15, help="how much of train dataset to use")
+    parser.add_argument('--epochs', action='store', type=int, default=5)
+    parser.add_argument('--split', action='store', default=0.1, help="how much of train dataset to use")
     
     # MLP classifer hyperparameters
     parser.add_argument('--classifier_hidden_size',type=int, default=512)
@@ -102,7 +103,7 @@ def main():
     parser.add_argument('--encoder_hidden_size',type=int, default=1024)  # sentenceEmbedding, convNet, BiLSTM, LastStateEncoder
     parser.add_argument('--encoder_attention_dim',type=int, default=512) # sentenceEmbedding
     parser.add_argument('--encoder_attention_hops',type=int, default=4)  # sentenceEmbedding
-    parser.add_argument('--encoder_penalty', default='False')            # sentenceEmbedding
+    parser.add_argument('--encoder_penalty', type=float, default=0.0)    # sentenceEmbedding
     parser.add_argument('--encoder_pooling', default='max',              # BiLSTM
                                             choices=['max', 'mean'])
     parser.add_argument('--encoder_RNN', default='LSTM')                 # LastStateEncoder
@@ -112,10 +113,15 @@ def main():
     args = parser.parse_args()
     
     # get True boolean values for input arguments using them. (args gets strings, strings that is not None == true)
-    args.encoder_penalty = correctBoolean(args.encoder_penalty, 'encoder_penalty')
     args.testing = correctBoolean(args.testing, 'testing')
     args.tqdm = correctBoolean(args.tqdm, 'tqdm')
     
+    # if summary writer is available for logging learning curve
+    try:
+        from tensorboardX import SummaryWriter
+        writer = SummaryWriter('./runs/{}'.format(args.name))
+    except ImportError:
+        writer = None
 
     # save meta data about model
     if args.name is not None:
@@ -151,9 +157,6 @@ def main():
     train_dataset = data.Dataset( load_jsonl_examples(args.train, fields) , fields=fields).split(args.split)[0]
     dev_dataset = data.Dataset( load_jsonl_examples(args.dev, fields) , fields=fields)
     
-    print('train size',len(train_dataset))
-    print('dev size',len(dev_dataset))
-    
     if args.testing:
         dev_dataset = train_dataset
     
@@ -174,7 +177,7 @@ def main():
     
     # encoder model, setenceEmbedding, convNet, BiLSTM, LastStateEncoder
     if args.encoder.lower() in 'sentenceembedding':
-        encoder = sentenceEmbeddingEncoder(token_field.vocab, args.encoder_hidden_size, args.encoder_attention_dim, args.encoder_attention_hops)
+        encoder = sentenceEmbeddingEncoder(token_field.vocab, args.encoder_hidden_size, args.encoder_attention_dim, args.encoder_attention_hops, args.encoder_penalty)
     elif args.encoder.lower() in 'convnet':
         encoder = convNetEncoder(token_field.vocab, args.encoder_hidden_size, args.encoder_kernel_size, args.encoder_padding)
     elif args.encoder.lower() in 'bilstm':
@@ -192,8 +195,8 @@ def main():
     
     dev_acc = 0
     for epoch in range(args.epochs):
-        train_accuracy, train_loss, train_mean_loss = train(net, train_iter, criterion, optimiser, epoch, args)
-        accuracy, predicted, gold_label, dev_loss, dev_mean_loss = evaluate(net, dev_iter, epoch, args)
+        train_accuracy, train_loss, train_mean_loss = train(net, train_iter, criterion, optimiser, epoch, args, writer)
+        accuracy, predicted, gold_label, dev_loss, dev_mean_loss = evaluate(net, dev_iter, epoch, args, writer)
         
         gold_classes_human = [label_field.vocab.itos[x] for x in gold_label]
         predicted_dev_human = [label_field.vocab.itos[x] for x in predicted]
@@ -220,6 +223,8 @@ def main():
           with open('{}/epochs.json'.format(directory), 'a') as outfile:
               json.dump(save_data, outfile)
               outfile.write('\n')
+    
+            
             
 if __name__ == '__main__':
     main()   
