@@ -3,7 +3,7 @@
 #SBATCH --job-name=IN5550
 #SBATCH --mail-type=FAIL
 #SBATCH --account=nn9447k
-#SBATCH --time=05:00:00
+#SBATCH --time=07:45:00
 #SBATCH --nodes=1
 #SBATCH --mem-per-cpu=4G
 
