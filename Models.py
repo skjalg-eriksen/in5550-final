@@ -391,4 +391,123 @@ class sentenceEmbeddingEncoder(nn.Module):
         A = self.MLP(out).transpose(2,1)
         
         return A
+     
+class gruSentenceEmbeddingEncoder(nn.Module):
+# structured self-attentive sentence embedding architecture, paper: https://arxiv.org/pdf/1703.03130.pdf
+    def __init__(self, token_vocab, hidden_size=1024, attention_dim=256, attention_hops=4, penalty=0):
+        super().__init__()
+        self.penalty = penalty
+        # output dimension, used by MLP_classifier to determin the dimensions of the input layer
+        self.output_size = hidden_size*attention_hops*2
+        
+        # Word embeddings
+        self.embedding = nn.Embedding(  len(token_vocab), token_vocab.vectors.shape[1], # embedding dim
+                                        padding_idx=token_vocab.stoi['<pad>']).from_pretrained(token_vocab.vectors)
+        
+        # BiLSTM
+        self.RNN = nn.GRU(token_vocab.vectors.shape[1], hidden_size, bias=True, batch_first=True, bidirectional=True)
+        
+        # MLP described in the paper, first linear layer is Ws1, then tanh, then last linear layer is Ws2
+        self.MLP = nn.Sequential(
+                                 nn.Linear(hidden_size*2, attention_dim), # input layer
+                                 nn.Tanh(), # hidden layer
+                                 nn.Linear(attention_dim, attention_hops), # ouput layer
+                                 nn.Softmax(dim=1) # softmax for attention distrubution
+                                )
+        
+        # dimension (2, hidden_size) 
+        # where hidden size is the hidden dim of the rnn, and 2 is the number of directions, BiLSTM has 2 directions
+        # autograd means requires_grad is set to true, so it will be trained
+        self.init_state = (
+                            torch.autograd.Variable(torch.zeros(2, hidden_size))) # initial hidden state
     
+    def forward(self, sentence):
+        tokens, lengths = sentence;
+        
+        # list(unbind()) turns tensors into lists. 
+        lengths = list(torch.unbind(lengths))
+        tokens = list(torch.unbind(tokens))
+        
+        # add batch to list object to keep track of original indexes
+        batch = []
+        for i, (t, l) in enumerate(zip(tokens, lengths)):
+            # i batch index, t sentence tokens, l lenght, None will be sentence embedding u
+            batch.append( [i, t, l, None] ) 
+        
+        # sort batch list by lenghts
+        batch = sorted(batch, reverse=True, key=lambda x: x[2])
+        
+        # get sorted tokens and lengths
+        tokens = torch.stack([x[1] for x in batch])
+        lengths = torch.stack([x[2] for x in batch])
+        
+        # get embedding vectors
+        embedded = self.embedding(tokens)
+        
+        # pack sentence
+        packed = torch.nn.utils.rnn.pack_padded_sequence(embedded, lengths, batch_first=True)
+        
+        # for each sentence in batch use a initial hidden state init_hidden, and a initial cell state init_cell
+        init_hidden = [self.init_state[0] for l in lengths]
+        
+        
+        # turn lists into tensors
+        init_hidden = torch.stack(init_hidden).transpose(1,0)
+    
+        
+        # get rnn hidden states out
+        out, _ = self.RNN(packed, init_hidden)
+        out, _ = torch.nn.utils.rnn.pad_packed_sequence(out, batch_first=True)
+        
+        # make attention distrubution with MLP, where output will be a softmaxed distrubution
+        A = self.MLP(out).transpose(2,1)
+        
+        # get weighted attention sentence matrix u
+        u = A @ out
+        
+        #  penalization term for redundancy
+        p =  A @ A.transpose(2,1)
+        p = p - torch.matrix_power(p, 0) # matrix power 0 returns identity matrix
+        p = torch.norm(p, p='fro')
+        
+        p = p * self.penalty
+        
+        # add the sentence embedding u_ in u to the batch list
+        for i, u_ in enumerate(u):
+            batch[i][3] = u_
+        
+        # sort by original batch indexes i
+        batch = sorted(batch, key=lambda x: x[0])
+        u = torch.stack([x[3] for x in batch])
+        u = u.transpose(1,0)
+        
+        # concatinate the attention vectors
+        u = torch.cat([v for v in u], dim=1)
+        return u, p
+    
+    def AttentionExmaple(self, Example):
+        tokens, lengths = Example
+        
+        # get embedding vectors
+        embedded = self.embedding(tokens)
+        
+        # pack sentence
+        packed = torch.nn.utils.rnn.pack_padded_sequence(embedded, lengths, batch_first=True)
+        
+        # for each sentence in batch use a initial hidden state init_hidden, and a initial cell state init_cell
+        init_hidden = [self.init_state[0] for l in lengths]
+        init_cell = [self.init_state[1] for l in lengths]
+        
+        # turn lists into tensors
+        init_hidden = torch.stack(init_hidden).transpose(1,0)
+        init_cell = torch.stack(init_cell).transpose(1,0)
+        
+        # get rnn hidden states out
+        out, _ = self.RNN(packed, (init_hidden,init_cell))
+        out, _ = torch.nn.utils.rnn.pad_packed_sequence(out, batch_first=True)
+        
+        # make attention distrubution with MLP, where output will be a softmaxed distrubution
+        A = self.MLP(out).transpose(2,1)
+        
+        return A
+        
