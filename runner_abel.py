@@ -12,7 +12,7 @@ import json
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
 
-def train(model, iterator, criterion, optimiser, epoch, args, writer=None):
+def train(model, iterator, criterion, optimiser, epoch, args):
     model.train()
     
     if args.tqdm: pbar = tqdm(total=len(iterator.data()))
@@ -43,7 +43,7 @@ def train(model, iterator, criterion, optimiser, epoch, args, writer=None):
     if args.tqdm: pbar.close()
     return accuracy/total, total_loss, total_loss/total
 
-def evaluate(model, iterator, epoch, args, writer=None):
+def evaluate(model, iterator, epoch, args):
     model.eval()
     
     if args.tqdm: pbar = tqdm(total=len(iterator.data()))
@@ -116,12 +116,6 @@ def main():
     args.testing = correctBoolean(args.testing, 'testing')
     args.tqdm = correctBoolean(args.tqdm, 'tqdm')
     
-    # if summary writer is available for logging learning curve
-    try:
-        from tensorboardX import SummaryWriter
-        writer = SummaryWriter('./runs/{}'.format(args.name))
-    except ImportError:
-        writer = None
 
     # save meta data about model
     if args.name is not None:
@@ -195,8 +189,8 @@ def main():
     
     dev_acc = 0
     for epoch in range(args.epochs):
-        train_accuracy, train_loss, train_mean_loss = train(net, train_iter, criterion, optimiser, epoch, args, writer)
-        accuracy, predicted, gold_label, dev_loss, dev_mean_loss = evaluate(net, dev_iter, epoch, args, writer)
+        train_accuracy, train_loss, train_mean_loss = train(net, train_iter, criterion, optimiser, epoch, args)
+        accuracy, predicted, gold_label, dev_loss, dev_mean_loss = evaluate(net, dev_iter, epoch, args)
         
         gold_classes_human = [label_field.vocab.itos[x] for x in gold_label]
         predicted_dev_human = [label_field.vocab.itos[x] for x in predicted]

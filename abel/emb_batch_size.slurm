@@ -23,6 +23,6 @@ echo $SUBMITDIR
 
 #'sentenceEmbedding', 'convNet', 'BiLSTM', 'LastStateEncoder'
 
-echo "train sentence embedding classififer with batch size $1"
-python ../runner_abel.py --dir $SUBMITDIR --name `sentenceEmbedding_batch_$1` --batch_size $1
+echo "train sentence embedding classififer with batch size $1 "
+python ../runner_abel.py --dir $SUBMITDIR --name "sentenceE mbedding_batch_$1" --batch_size $1
 

@@ -25,5 +25,5 @@ echo $SUBMITDIR
 
 
 echo "train classififer GRU with batch size $1"
-python ../runner_abel.py --dir $SUBMITDIR --encoder LastStateEncoder --encoder_RNN gru --name `gru_batch_$1` --batch_size $1
+python ../runner_abel.py --dir $SUBMITDIR --encoder LastStateEncoder --encoder_RNN gru --name "gru_batch_$1" --batch_size $1
 
