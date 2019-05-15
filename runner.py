@@ -108,7 +108,7 @@ def main():
     parser.add_argument('--classifier_dropout', type=float, default=0.0)
     
     # encoder hyperparameters
-    parser.add_argument('--encoder', action='store', default="sentenceEmbedding", choices=['sentenceEmbedding', 'convNet', 'BiLSTM', 'LastStateEncoder'])
+    parser.add_argument('--encoder', action='store', default="sentenceEmbedding", choices=['sentenceEmbedding', 'convNet', 'BiLSTM', 'LastStateEncoder', 'gruSentenceEmbeddingEncoder'])
     parser.add_argument('--encoder_hidden_size',type=int, default=1024)  # sentenceEmbedding, convNet, BiLSTM, LastStateEncoder
     parser.add_argument('--encoder_attention_dim',type=int, default=512) # sentenceEmbedding
     parser.add_argument('--encoder_attention_hops',type=int, default=4)  # sentenceEmbedding
@@ -193,6 +193,10 @@ def main():
         encoder = BiLSTMEncoder(token_field.vocab, args.encoder_hidden_size, args.encoder_pooling)
     elif args.encoder.lower() in 'laststateencoder':
         encoder = LastStateEncoder(token_field.vocab, args.encoder_hidden_size, args.encoder_RNN)
+    elif args.encoder.lower() in 'gruSentenceEmbeddingEncoder':
+        encoder = gruSentenceEmbeddingEncoder(token_field.vocab, args.encoder_hidden_size, args.encoder_attention_dim, args.encoder_attention_hops, args.encoder_penalty)
+        
+        
     else:
         raise Exception('not a valid encoder: {}'.format(args.encoder))
         
