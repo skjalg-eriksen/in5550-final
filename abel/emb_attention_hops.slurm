@@ -9,7 +9,7 @@
 
 # Increase this number when you really need parallel computing
 # (don't set it to more than 6 or 8 cores):
-#SBATCH --ntasks-per-node=6
+#SBATCH --ntasks-per-node=8
 
 source /cluster/bin/jobsetup
 set -o errexit
@@ -24,7 +24,6 @@ echo $SUBMITDIR
 
 #'sentenceEmbedding', 'convNet', 'BiLSTM', 'LastStateEncoder'
 
-
-echo "train classififer GRU with batch size $1"
-python ../runner_abel.py --dir $SUBMITDIR --name "gru_batch_$1" --encoder LastStateEncoder --encoder_RNN gru  --batch_size $1
+echo "train sentence embedding classififer encoder_attention_hops $1 "
+python ../runner_abel.py --dir $SUBMITDIR --name "sentenceEmbedding_hidden_$1" --encoder_attention_hops $1
 
