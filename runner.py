@@ -193,7 +193,7 @@ def main():
         encoder = BiLSTMEncoder(token_field.vocab, args.encoder_hidden_size, args.encoder_pooling)
     elif args.encoder.lower() in 'laststateencoder':
         encoder = LastStateEncoder(token_field.vocab, args.encoder_hidden_size, args.encoder_RNN)
-    elif args.encoder.lower() in 'gruSentenceEmbeddingEncoder':
+    elif args.encoder.lower() in 'grusentenceembeddingencoder':
         encoder = gruSentenceEmbeddingEncoder(token_field.vocab, args.encoder_hidden_size, args.encoder_attention_dim, args.encoder_attention_hops, args.encoder_penalty)
         
         
