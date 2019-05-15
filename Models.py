@@ -35,7 +35,8 @@ class MLP_classifier(nn.Module):
         u = self.encoder(batch.sentence1_tok)
         v = self.encoder(batch.sentence2_tok)
         
-        if isinstance(self.encoder, sentenceEmbeddingEncoder):
+        #if isinstance(self.encoder, sentenceEmbeddingEncoder):
+        if isinstance(u, tuple):
             # unpacking sentence representation and penalization
             u , p1 = u
             v, p2 = v
@@ -418,9 +419,8 @@ class gruSentenceEmbeddingEncoder(nn.Module):
         # dimension (2, hidden_size) 
         # where hidden size is the hidden dim of the rnn, and 2 is the number of directions, BiLSTM has 2 directions
         # autograd means requires_grad is set to true, so it will be trained
-        self.init_state = (
-                            torch.autograd.Variable(torch.zeros(2, hidden_size))) # initial hidden state
-    
+        self.init_state = torch.autograd.Variable(torch.zeros(2, hidden_size)) # initial hidden state
+                            
     def forward(self, sentence):
         tokens, lengths = sentence;
         
@@ -448,12 +448,10 @@ class gruSentenceEmbeddingEncoder(nn.Module):
         packed = torch.nn.utils.rnn.pack_padded_sequence(embedded, lengths, batch_first=True)
         
         # for each sentence in batch use a initial hidden state init_hidden, and a initial cell state init_cell
-        init_hidden = [self.init_state[0] for l in lengths]
-        
-        
+        init_hidden = [self.init_state for l in lengths]
+       
         # turn lists into tensors
         init_hidden = torch.stack(init_hidden).transpose(1,0)
-    
         
         # get rnn hidden states out
         out, _ = self.RNN(packed, init_hidden)

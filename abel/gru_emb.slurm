@@ -22,9 +22,9 @@ module load nlpl-gensim nlpl-pytorch
 
 echo $SUBMITDIR
 
-#'sentenceEmbedding', 'convNet', 'BiLSTM', 'LastStateEncoder'
+#'sentenceEmbedding', 'convNet', 'BiLSTM', 'LastStateEncoder', 'gruSentenceEmbeddingEncoder'
 
 
-echo "train classififer GRU with batch size $1"
-python ../runner_abel.py --dir $SUBMITDIR --encoder LastStateEncoder --encoder_RNN gru --name "gru_batch_$1" --batch_size $1
+echo "train classififer GRU with attention"
+python ../runner_abel.py --dir $SUBMITDIR --name "gru_embedding" --encoder gruSentenceEmbeddingEncoder
 
