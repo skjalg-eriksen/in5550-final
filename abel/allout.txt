@@ -1,0 +1,568 @@
+Starting job 26972281 ("IN5550") on c15-34 at ma. 13. mai 08:41:14 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train classififer sentenceEmbedding
+slurmstepd: error: *** JOB 26972281 ON c15-34 CANCELLED AT 2019-05-13T13:41:40 DUE TO TIME LIMIT ***
+
+Currently Loaded Modulefiles:
+  1) emacs/25.1               10) /nlpl-scipy/201901/3.5
+  2) git/2.16.2               11) /nlpl-gensim/3.7.0/3.5
+  3) gcc/4.9.2                12) cuda/8.0
+  4) cuda/9.0                 13) /nlpl-pytorch/0.4.1
+  5) intel/2016.0             14) /nlpl-in5550/201904/3.5
+  6) libffi/3.0.13            15) intel/2019.0
+  7) python3/3.5.0            16) openssl.intel/1_1_1
+  8) /nlpl-nltk/3.4/3.5       17) python3/3.7.0
+  9) /nlpl-numpy/1.16.0/3.5   18) /nlpl-in5550/201901/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26972281.ba+   4107080K   2253309K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26972281         IN5550          6                         05:00:29      0:0 
+
+Job 26972281 ("IN5550") completed on c15-34 at ma. 13. mai 13:41:41 +0200 2019
+Starting job 26972308 ("IN5550") on c15-6 at ma. 13. mai 08:46:20 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train classififer sentenceEmbedding
+slurmstepd: error: *** JOB 26972308 ON c15-6 CANCELLED AT 2019-05-13T13:46:41 DUE TO TIME LIMIT ***
+
+Currently Loaded Modulefiles:
+  1) emacs/25.1               10) /nlpl-scipy/201901/3.5
+  2) git/2.16.2               11) /nlpl-gensim/3.7.0/3.5
+  3) gcc/4.9.2                12) cuda/8.0
+  4) cuda/9.0                 13) /nlpl-pytorch/0.4.1
+  5) intel/2016.0             14) /nlpl-in5550/201904/3.5
+  6) libffi/3.0.13            15) intel/2019.0
+  7) python3/3.5.0            16) openssl.intel/1_1_1
+  8) /nlpl-nltk/3.4/3.5       17) python3/3.7.0
+  9) /nlpl-numpy/1.16.0/3.5   18) /nlpl-in5550/201901/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26972308.ba+   4100320K   2246709K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26972308         IN5550          6                         05:00:22      0:0 
+
+Job 26972308 ("IN5550") completed on c15-6 at ma. 13. mai 13:46:42 +0200 2019
+Starting job 26972309 ("IN5550") on c15-17 at ma. 13. mai 08:47:20 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train classififer LSTM
+slurmstepd: error: *** JOB 26972309 ON c15-17 CANCELLED AT 2019-05-13T13:47:41 DUE TO TIME LIMIT ***
+
+Currently Loaded Modulefiles:
+  1) emacs/25.1               10) /nlpl-scipy/201901/3.5
+  2) git/2.16.2               11) /nlpl-gensim/3.7.0/3.5
+  3) gcc/4.9.2                12) cuda/8.0
+  4) cuda/9.0                 13) /nlpl-pytorch/0.4.1
+  5) intel/2016.0             14) /nlpl-in5550/201904/3.5
+  6) libffi/3.0.13            15) intel/2019.0
+  7) python3/3.5.0            16) openssl.intel/1_1_1
+  8) /nlpl-nltk/3.4/3.5       17) python3/3.7.0
+  9) /nlpl-numpy/1.16.0/3.5   18) /nlpl-in5550/201901/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26972309.ba+   3541232K   1585124K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26972309         IN5550          6                         05:00:21      0:0 
+
+Job 26972309 ("IN5550") completed on c15-17 at ma. 13. mai 13:47:42 +0200 2019
+Starting job 26972310 ("IN5550") on c14-29 at ma. 13. mai 08:47:57 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train classififer BiLSTM
+slurmstepd: error: *** JOB 26972310 ON c14-29 CANCELLED AT 2019-05-13T13:48:11 DUE TO TIME LIMIT ***
+
+Currently Loaded Modulefiles:
+  1) emacs/25.1               10) /nlpl-scipy/201901/3.5
+  2) git/2.16.2               11) /nlpl-gensim/3.7.0/3.5
+  3) gcc/4.9.2                12) cuda/8.0
+  4) cuda/9.0                 13) /nlpl-pytorch/0.4.1
+  5) intel/2016.0             14) /nlpl-in5550/201904/3.5
+  6) libffi/3.0.13            15) intel/2019.0
+  7) python3/3.5.0            16) openssl.intel/1_1_1
+  8) /nlpl-nltk/3.4/3.5       17) python3/3.7.0
+  9) /nlpl-numpy/1.16.0/3.5   18) /nlpl-in5550/201901/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26972310.ba+   3809372K   1934968K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26972310         IN5550          6                         05:00:15      0:0 
+
+Job 26972310 ("IN5550") completed on c14-29 at ma. 13. mai 13:48:11 +0200 2019
+Starting job 26972311 ("IN5550") on c14-31 at ma. 13. mai 08:47:57 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train classififer convNet
+slurmstepd: error: *** JOB 26972311 ON c14-31 CANCELLED AT 2019-05-13T13:48:11 DUE TO TIME LIMIT ***
+
+Currently Loaded Modulefiles:
+  1) emacs/25.1               10) /nlpl-scipy/201901/3.5
+  2) git/2.16.2               11) /nlpl-gensim/3.7.0/3.5
+  3) gcc/4.9.2                12) cuda/8.0
+  4) cuda/9.0                 13) /nlpl-pytorch/0.4.1
+  5) intel/2016.0             14) /nlpl-in5550/201904/3.5
+  6) libffi/3.0.13            15) intel/2019.0
+  7) python3/3.5.0            16) openssl.intel/1_1_1
+  8) /nlpl-nltk/3.4/3.5       17) python3/3.7.0
+  9) /nlpl-numpy/1.16.0/3.5   18) /nlpl-in5550/201901/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26972311.ba+   3600360K   1632854K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26972311         IN5550          6                         05:00:15      0:0 
+
+Job 26972311 ("IN5550") completed on c14-31 at ma. 13. mai 13:48:11 +0200 2019
+Starting job 26988806 ("IN5550") on c18-8 at on. 15. mai 01:03:35 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train classififer
+/var/spool/slurmd/job26988806/slurm_script: line 26: sentenceEmbedding_batch_64: command not found
+/projects/nlpl/software/pytorch/0.4.1/bin/.python3.5: can't open file 'runner_abel.py': [Errno 2] No such file or directory
+
+Currently Loaded Modulefiles:
+  1) emacs/25.1                8) /nlpl-nltk/3.4/3.5
+  2) git/2.16.2                9) /nlpl-numpy/1.16.0/3.5
+  3) gcc/4.9.2                10) /nlpl-scipy/201901/3.5
+  4) cuda/9.0                 11) /nlpl-gensim/3.7.0/3.5
+  5) intel/2016.0             12) cuda/8.0
+  6) libffi/3.0.13            13) /nlpl-pytorch/0.4.1
+  7) python3/3.5.0            14) /nlpl-in5550/201904/3.5
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26988806.ba+    213684K      2262K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26988806         IN5550          8                         00:00:13      0:0 
+
+Job 26988806 ("IN5550") completed on c18-8 at on. 15. mai 01:03:47 +0200 2019
+Starting job 26988907 ("IN5550") on c18-6 at on. 15. mai 02:23:13 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train classififer
+/var/spool/slurmd/job26988907/slurm_script: line 26: sentenceEmbedding_batch_64: command not found
+/projects/nlpl/software/pytorch/0.4.1/bin/.python3.5: can't open file 'runner_abel.py': [Errno 2] No such file or directory
+
+Currently Loaded Modulefiles:
+  1) emacs/25.1                8) /nlpl-nltk/3.4/3.5
+  2) git/2.16.2                9) /nlpl-numpy/1.16.0/3.5
+  3) gcc/4.9.2                10) /nlpl-scipy/201901/3.5
+  4) cuda/9.0                 11) /nlpl-gensim/3.7.0/3.5
+  5) intel/2016.0             12) cuda/8.0
+  6) libffi/3.0.13            13) /nlpl-pytorch/0.4.1
+  7) python3/3.5.0            14) /nlpl-in5550/201904/3.5
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26988907.ba+    213684K      2259K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26988907         IN5550          8                         00:00:12      0:0 
+
+Job 26988907 ("IN5550") completed on c18-6 at on. 15. mai 02:23:21 +0200 2019
+Starting job 26988908 ("IN5550") on c18-8 at on. 15. mai 02:25:20 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train sentence embedding classififer with batch size 64
+/var/spool/slurmd/job26988908/slurm_script: line 27: sentenceEmbedding_batch_64: command not found
+usage: runner_abel.py [-h] [--train TRAIN] [--dev DEV] [--embeds EMBEDS]
+                      [--name NAME] [--dir DIR] [--testing TESTING]
+                      [--tqdm TQDM] [--batch_size BATCH_SIZE] [--lr LR]
+                      [--epochs EPOCHS] [--split SPLIT]
+                      [--classifier_hidden_size CLASSIFIER_HIDDEN_SIZE]
+                      [--classifier_num_layers CLASSIFIER_NUM_LAYERS]
+                      [--classifier_dropout CLASSIFIER_DROPOUT]
+                      [--encoder {sentenceEmbedding,convNet,BiLSTM,LastStateEncoder}]
+                      [--encoder_hidden_size ENCODER_HIDDEN_SIZE]
+                      [--encoder_attention_dim ENCODER_ATTENTION_DIM]
+                      [--encoder_attention_hops ENCODER_ATTENTION_HOPS]
+                      [--encoder_penalty ENCODER_PENALTY]
+                      [--encoder_pooling {max,mean}]
+                      [--encoder_RNN ENCODER_RNN]
+                      [--encoder_padding ENCODER_PADDING]
+                      [--encoder_kernel_size ENCODER_KERNEL_SIZE]
+runner_abel.py: error: argument --name: expected one argument
+
+Currently Loaded Modulefiles:
+  1) emacs/25.1               10) /nlpl-scipy/201901/3.5
+  2) git/2.16.2               11) /nlpl-gensim/3.7.0/3.5
+  3) gcc/4.9.2                12) cuda/8.0
+  4) cuda/9.0                 13) /nlpl-pytorch/0.4.1
+  5) intel/2016.0             14) /nlpl-in5550/201904/3.5
+  6) libffi/3.0.13            15) intel/2019.0
+  7) python3/3.5.0            16) openssl.intel/1_1_1
+  8) /nlpl-nltk/3.4/3.5       17) python3/3.7.0
+  9) /nlpl-numpy/1.16.0/3.5   18) /nlpl-in5550/201901/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26988908.ba+   1984456K    159213K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26988908         IN5550          8                         00:01:56      0:0 
+
+Job 26988908 ("IN5550") completed on c18-8 at on. 15. mai 02:27:14 +0200 2019
+Starting job 26988909 ("IN5550") on c31-18 at on. 15. mai 03:46:46 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train sentence embedding classififer with batch size 128
+/var/spool/slurmd/job26988909/slurm_script: line 27: sentenceEmbedding_batch_128: command not found
+usage: runner_abel.py [-h] [--train TRAIN] [--dev DEV] [--embeds EMBEDS]
+                      [--name NAME] [--dir DIR] [--testing TESTING]
+                      [--tqdm TQDM] [--batch_size BATCH_SIZE] [--lr LR]
+                      [--epochs EPOCHS] [--split SPLIT]
+                      [--classifier_hidden_size CLASSIFIER_HIDDEN_SIZE]
+                      [--classifier_num_layers CLASSIFIER_NUM_LAYERS]
+                      [--classifier_dropout CLASSIFIER_DROPOUT]
+                      [--encoder {sentenceEmbedding,convNet,BiLSTM,LastStateEncoder}]
+                      [--encoder_hidden_size ENCODER_HIDDEN_SIZE]
+                      [--encoder_attention_dim ENCODER_ATTENTION_DIM]
+                      [--encoder_attention_hops ENCODER_ATTENTION_HOPS]
+                      [--encoder_penalty ENCODER_PENALTY]
+                      [--encoder_pooling {max,mean}]
+                      [--encoder_RNN ENCODER_RNN]
+                      [--encoder_padding ENCODER_PADDING]
+                      [--encoder_kernel_size ENCODER_KERNEL_SIZE]
+runner_abel.py: error: argument --name: expected one argument
+
+Currently Loaded Modulefiles:
+  1) emacs/25.1               10) /nlpl-scipy/201901/3.5
+  2) git/2.16.2               11) /nlpl-gensim/3.7.0/3.5
+  3) gcc/4.9.2                12) cuda/8.0
+  4) cuda/9.0                 13) /nlpl-pytorch/0.4.1
+  5) intel/2016.0             14) /nlpl-in5550/201904/3.5
+  6) libffi/3.0.13            15) intel/2019.0
+  7) python3/3.5.0            16) openssl.intel/1_1_1
+  8) /nlpl-nltk/3.4/3.5       17) python3/3.7.0
+  9) /nlpl-numpy/1.16.0/3.5   18) /nlpl-in5550/201901/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26988909.ba+   1521972K    112244K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26988909         IN5550          8                         00:00:59      0:0 
+
+Job 26988909 ("IN5550") completed on c31-18 at on. 15. mai 03:47:42 +0200 2019
+Starting job 26988911 ("IN5550") on c15-14 at on. 15. mai 04:16:19 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train classififer GRU with batch size 64
+/var/spool/slurmd/job26988911/slurm_script: line 28: gru_batch_64: command not found
+usage: runner_abel.py [-h] [--train TRAIN] [--dev DEV] [--embeds EMBEDS]
+                      [--name NAME] [--dir DIR] [--testing TESTING]
+                      [--tqdm TQDM] [--batch_size BATCH_SIZE] [--lr LR]
+                      [--epochs EPOCHS] [--split SPLIT]
+                      [--classifier_hidden_size CLASSIFIER_HIDDEN_SIZE]
+                      [--classifier_num_layers CLASSIFIER_NUM_LAYERS]
+                      [--classifier_dropout CLASSIFIER_DROPOUT]
+                      [--encoder {sentenceEmbedding,convNet,BiLSTM,LastStateEncoder}]
+                      [--encoder_hidden_size ENCODER_HIDDEN_SIZE]
+                      [--encoder_attention_dim ENCODER_ATTENTION_DIM]
+                      [--encoder_attention_hops ENCODER_ATTENTION_HOPS]
+                      [--encoder_penalty ENCODER_PENALTY]
+                      [--encoder_pooling {max,mean}]
+                      [--encoder_RNN ENCODER_RNN]
+                      [--encoder_padding ENCODER_PADDING]
+                      [--encoder_kernel_size ENCODER_KERNEL_SIZE]
+runner_abel.py: error: argument --name: expected one argument
+
+Currently Loaded Modulefiles:
+  1) emacs/25.1               10) /nlpl-scipy/201901/3.5
+  2) git/2.16.2               11) /nlpl-gensim/3.7.0/3.5
+  3) gcc/4.9.2                12) cuda/8.0
+  4) cuda/9.0                 13) /nlpl-pytorch/0.4.1
+  5) intel/2016.0             14) /nlpl-in5550/201904/3.5
+  6) libffi/3.0.13            15) intel/2019.0
+  7) python3/3.5.0            16) openssl.intel/1_1_1
+  8) /nlpl-nltk/3.4/3.5       17) python3/3.7.0
+  9) /nlpl-numpy/1.16.0/3.5   18) /nlpl-in5550/201901/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26988911.ba+   2000656K    164667K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26988911         IN5550          8                         00:01:06      0:0 
+
+Job 26988911 ("IN5550") completed on c15-14 at on. 15. mai 04:17:23 +0200 2019
+Starting job 26988913 ("IN5550") on c18-13 at on. 15. mai 10:49:50 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train classififer GRU with batch size 128
+/var/spool/slurmd/job26988913/slurm_script: line 28: gru_batch_128: command not found
+usage: runner_abel.py [-h] [--train TRAIN] [--dev DEV] [--embeds EMBEDS]
+                      [--name NAME] [--dir DIR] [--testing TESTING]
+                      [--tqdm TQDM] [--batch_size BATCH_SIZE] [--lr LR]
+                      [--epochs EPOCHS] [--split SPLIT]
+                      [--classifier_hidden_size CLASSIFIER_HIDDEN_SIZE]
+                      [--classifier_num_layers CLASSIFIER_NUM_LAYERS]
+                      [--classifier_dropout CLASSIFIER_DROPOUT]
+                      [--encoder {sentenceEmbedding,convNet,BiLSTM,LastStateEncoder}]
+                      [--encoder_hidden_size ENCODER_HIDDEN_SIZE]
+                      [--encoder_attention_dim ENCODER_ATTENTION_DIM]
+                      [--encoder_attention_hops ENCODER_ATTENTION_HOPS]
+                      [--encoder_penalty ENCODER_PENALTY]
+                      [--encoder_pooling {max,mean}]
+                      [--encoder_RNN ENCODER_RNN]
+                      [--encoder_padding ENCODER_PADDING]
+                      [--encoder_kernel_size ENCODER_KERNEL_SIZE]
+runner_abel.py: error: argument --name: expected one argument
+
+Currently Loaded Modulefiles:
+  1) emacs/25.1               10) /nlpl-scipy/201901/3.5
+  2) git/2.16.2               11) /nlpl-gensim/3.7.0/3.5
+  3) gcc/4.9.2                12) cuda/8.0
+  4) cuda/9.0                 13) /nlpl-pytorch/0.4.1
+  5) intel/2016.0             14) /nlpl-in5550/201904/3.5
+  6) libffi/3.0.13            15) intel/2019.0
+  7) python3/3.5.0            16) openssl.intel/1_1_1
+  8) /nlpl-nltk/3.4/3.5       17) python3/3.7.0
+  9) /nlpl-numpy/1.16.0/3.5   18) /nlpl-in5550/201901/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26988913.ba+   2006788K    148153K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26988913         IN5550          8                         00:02:03      0:0 
+
+Job 26988913 ("IN5550") completed on c18-13 at on. 15. mai 10:51:51 +0200 2019
+Starting job 26990533 ("IN5550") on c16-3 at on. 15. mai 08:33:56 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train sentence embedding classififer with batch size 64 
+/projects/nlpl/software/scipy/201901/lib/python3.7/site-packages/sklearn/metrics/classification.py:1143: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+MLP_classifier(
+  (encoder): sentenceEmbeddingEncoder(
+    (embedding): Embedding(18926, 100)
+    (RNN): LSTM(100, 1024, batch_first=True, bidirectional=True)
+    (MLP): Sequential(
+      (0): Linear(in_features=2048, out_features=512, bias=True)
+      (1): Tanh()
+      (2): Linear(in_features=512, out_features=4, bias=True)
+      (3): Softmax()
+    )
+  )
+  (classifier): Sequential(
+    (inputLayer): Linear(in_features=32768, out_features=512, bias=True)
+    (activation_0): ReLU()
+    (outputLayer): Linear(in_features=512, out_features=5, bias=True)
+  )
+)
+> dev accuracy: 6558/10000 = 0.6558
+saving 0
+{'epoch': 0, 'train_accuracy': 0.6135054076161047, 'train_loss': 740.1462217569351, 'train_mean': 0.013453534886066256, 'dev_accuracy': 0.656, 'dev_loss': 8674.944636285305, 'dev_mean': 0.8674944636285306, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.5921632274518897, 'recall': 0.7791336180597925, 'f1-score': 0.6729021209326835, 'support': 3278}, 'entailment': {'precision': 0.7355072463768116, 'recall': 0.6097927305497146, 'f1-score': 0.6667761537198227, 'support': 3329}, 'neutral': {'precision': 0.674410659378203, 'recall': 0.6102009273570325, 'f1-score': 0.640701071080818, 'support': 3235}, 'micro avg': {'precision': 0.6558, 'recall': 0.6558, 'f1-score': 0.6558, 'support': 10000}, 'macro avg': {'precision': 0.500520283301726, 'recall': 0.4997818189916349, 'f1-score': 0.4950948364333311, 'support': 10000}, 'weighted avg': {'precision': 0.6571333165864187, 'recall': 0.6558, 'f1-score': 0.6498138933097073, 'support': 10000}}}
+> dev accuracy: 7027/10000 = 0.7027
+saving 1
+{'epoch': 1, 'train_accuracy': 0.713132781968554, 'train_loss': 594.1695371568203, 'train_mean': 0.010800137001850773, 'dev_accuracy': 0.703, 'dev_loss': 7792.308194339275, 'dev_mean': 0.7792308194339276, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.7250453720508166, 'recall': 0.7312385600976204, 'f1-score': 0.7281287970838396, 'support': 3278}, 'entailment': {'precision': 0.7510603588907014, 'recall': 0.6914989486332231, 'f1-score': 0.7200500469189864, 'support': 3329}, 'neutral': {'precision': 0.6414990355469826, 'recall': 0.719629057187017, 'f1-score': 0.6783216783216783, 'support': 3235}, 'micro avg': {'precision': 0.7027, 'recall': 0.7027, 'f1-score': 0.7027, 'support': 10000}, 'macro avg': {'precision': 0.5294011916221252, 'recall': 0.5355916414794651, 'f1-score': 0.5316251305811261, 'support': 10000}, 'weighted avg': {'precision': 0.6952228044324211, 'recall': 0.7027, 'f1-score': 0.697822343240476, 'support': 10000}}}
+> dev accuracy: 7127/10000 = 0.7127
+saving 2
+{'epoch': 2, 'train_accuracy': 0.7674815959283832, 'train_loss': 498.73224145174026, 'train_mean': 0.009065386557334186, 'dev_accuracy': 0.713, 'dev_loss': 7955.869920492172, 'dev_mean': 0.7955869920492172, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.7637846655791191, 'recall': 0.7141549725442343, 'f1-score': 0.7381365284565663, 'support': 3278}, 'entailment': {'precision': 0.7402832178366978, 'recall': 0.7380594773205167, 'f1-score': 0.7391696750902527, 'support': 3329}, 'neutral': {'precision': 0.6440818584070797, 'recall': 0.7199381761978362, 'f1-score': 0.6799007444168734, 'support': 3235}, 'micro avg': {'precision': 0.7127, 'recall': 0.7127, 'f1-score': 0.7127, 'support': 10000}, 'macro avg': {'precision': 0.5370374354557241, 'recall': 0.5430381565156468, 'f1-score': 0.5393017369909231, 'support': 10000}, 'weighted avg': {'precision': 0.7051693777893623, 'recall': 0.7127, 'f1-score': 0.7079786296844661, 'support': 10000}}}
+> dev accuracy: 6999/10000 = 0.6999
+{'epoch': 3, 'train_accuracy': 0.8294283377260747, 'train_loss': 380.58795005083084, 'train_mean': 0.006917894211593762, 'dev_accuracy': 0.7, 'dev_loss': 9826.97398519516, 'dev_mean': 0.982697398519516, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.7274608335796631, 'recall': 0.7507626601586334, 'f1-score': 0.7389280888755444, 'support': 3278}, 'entailment': {'precision': 0.7565043362241495, 'recall': 0.6812856713727846, 'f1-score': 0.716927453769559, 'support': 3329}, 'neutral': {'precision': 0.6272450953302017, 'recall': 0.7017001545595054, 'f1-score': 0.6623869273416982, 'support': 3235}, 'micro avg': {'precision': 0.6999, 'recall': 0.6999, 'f1-score': 0.6999, 'support': 10000}, 'macro avg': {'precision': 0.5278025662835035, 'recall': 0.5334371215227308, 'f1-score': 0.5295606174967005, 'support': 10000}, 'weighted avg': {'precision': 0.6932157431157532, 'recall': 0.6999, 'f1-score': 0.695167947888329, 'support': 10000}}}
+> dev accuracy: 6976/10000 = 0.6976
+{'epoch': 4, 'train_accuracy': 0.8746705443969827, 'train_loss': 284.2928876057267, 'train_mean': 0.005167552260396741, 'dev_accuracy': 0.698, 'dev_loss': 11283.16882187128, 'dev_mean': 1.1283168821871281, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.8295175797219951, 'recall': 0.6189749847467968, 'f1-score': 0.7089447938504542, 'support': 3278}, 'entailment': {'precision': 0.6652152878567973, 'recall': 0.8260738960648843, 'f1-score': 0.7369690473000134, 'support': 3329}, 'neutral': {'precision': 0.6425855513307985, 'recall': 0.6791344667697063, 'f1-score': 0.6603546738803727, 'support': 3235}, 'micro avg': {'precision': 0.6976, 'recall': 0.6976, 'f1-score': 0.6976, 'support': 10000}, 'macro avg': {'precision': 0.5343296047273978, 'recall': 0.5310458368953469, 'f1-score': 0.5265671287577101, 'support': 10000}, 'weighted avg': {'precision': 0.7012424578159111, 'recall': 0.6976, 'f1-score': 0.6913538362706539, 'support': 10000}}}
+
+Currently Loaded Modulefiles:
+  1) intel/2019.0              6) /nlpl-numpy/1.16.0/3.7
+  2) openssl.intel/1_1_1       7) /nlpl-scipy/201901/3.7
+  3) python3/3.7.0             8) /nlpl-gensim/3.7.3/3.7
+  4) /nlpl-numpy/1.16.3/3.7    9) cuda/9.0
+  5) gcc/4.9.2                10) /nlpl-pytorch/1.1.0/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26990533.ba+   4486372K   2417157K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26990533         IN5550          6                         06:26:41      0:0 
+
+Job 26990533 ("IN5550") completed on c16-3 at on. 15. mai 15:00:36 +0200 2019
+Starting job 26990534 ("IN5550") on c14-28 at on. 15. mai 08:33:56 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train sentence embedding classififer with batch size 256 
+/projects/nlpl/software/scipy/201901/lib/python3.7/site-packages/sklearn/metrics/classification.py:1143: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+MLP_classifier(
+  (encoder): sentenceEmbeddingEncoder(
+    (embedding): Embedding(18926, 100)
+    (RNN): LSTM(100, 1024, batch_first=True, bidirectional=True)
+    (MLP): Sequential(
+      (0): Linear(in_features=2048, out_features=512, bias=True)
+      (1): Tanh()
+      (2): Linear(in_features=512, out_features=4, bias=True)
+      (3): Softmax()
+    )
+  )
+  (classifier): Sequential(
+    (inputLayer): Linear(in_features=32768, out_features=512, bias=True)
+    (activation_0): ReLU()
+    (outputLayer): Linear(in_features=512, out_features=5, bias=True)
+  )
+)
+> dev accuracy: 6209/10000 = 0.6209
+saving 0
+{'epoch': 0, 'train_accuracy': 0.5623557211669544, 'train_loss': 199.09794026613235, 'train_mean': 0.003618975556959599, 'dev_accuracy': 0.621, 'dev_loss': 9349.173144102097, 'dev_mean': 0.9349173144102096, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.5645706558485463, 'recall': 0.7641854789505796, 'f1-score': 0.6493843162670123, 'support': 3278}, 'entailment': {'precision': 0.7209923664122138, 'recall': 0.5674376689696605, 'f1-score': 0.6350647167591192, 'support': 3329}, 'neutral': {'precision': 0.6167176350662589, 'recall': 0.5610510046367851, 'f1-score': 0.5875687924894788, 'support': 3235}, 'micro avg': {'precision': 0.6209, 'recall': 0.6209, 'f1-score': 0.6209, 'support': 10000}, 'macro avg': {'precision': 0.47557016433175475, 'recall': 0.4731685381392563, 'f1-score': 0.4680044563789026, 'support': 10000}, 'weighted avg': {'precision': 0.6245927747097142, 'recall': 0.6209, 'f1-score': 0.6143597274517838, 'support': 10000}}}
+> dev accuracy: 6664/10000 = 0.6664
+saving 1
+{'epoch': 1, 'train_accuracy': 0.6843951649550123, 'train_loss': 159.52808237075806, 'train_mean': 0.0028997197558985376, 'dev_accuracy': 0.666, 'dev_loss': 8362.960462987423, 'dev_mean': 0.8362960462987423, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.6425281473899693, 'recall': 0.7660158633312996, 'f1-score': 0.6988588922905651, 'support': 3278}, 'entailment': {'precision': 0.7506503158677071, 'recall': 0.6067888254731151, 'f1-score': 0.6710963455149501, 'support': 3329}, 'neutral': {'precision': 0.627168479858865, 'recall': 0.6593508500772798, 'f1-score': 0.6428571428571429, 'support': 3235}, 'micro avg': {'precision': 0.6664, 'recall': 0.6664, 'f1-score': 0.6664, 'support': 10000}, 'macro avg': {'precision': 0.5050867357791353, 'recall': 0.5080388847204236, 'f1-score': 0.5032030951656645, 'support': 10000}, 'weighted avg': {'precision': 0.6634012201011344, 'recall': 0.6664, 'f1-score': 0.66045820402906, 'support': 10000}}}
+> dev accuracy: 6778/10000 = 0.6778
+saving 2
+{'epoch': 2, 'train_accuracy': 0.7334181586839953, 'train_loss': 139.10012251138687, 'train_mean': 0.0025284035719601358, 'dev_accuracy': 0.678, 'dev_loss': 8321.1847255826, 'dev_mean': 0.83211847255826, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.6419723099344182, 'recall': 0.8062843197071385, 'f1-score': 0.7148073022312373, 'support': 3278}, 'entailment': {'precision': 0.7718761941153993, 'recall': 0.6067888254731151, 'f1-score': 0.6794483686511941, 'support': 3329}, 'neutral': {'precision': 0.6475811390079608, 'recall': 0.6537867078825348, 'f1-score': 0.6506691278264882, 'support': 3235}, 'micro avg': {'precision': 0.6778, 'recall': 0.6778, 'f1-score': 0.6778, 'support': 10000}, 'macro avg': {'precision': 0.5153574107644446, 'recall': 0.5167149632656971, 'f1-score': 0.5112311996772299, 'support': 10000}, 'weighted avg': {'precision': 0.676888606686594, 'recall': 0.6778, 'f1-score': 0.6709936584472511, 'support': 10000}}}
+> dev accuracy: 6951/10000 = 0.6951
+saving 3
+{'epoch': 3, 'train_accuracy': 0.7773152776515496, 'train_loss': 120.30556890368462, 'train_mean': 0.002186777586179853, 'dev_accuracy': 0.695, 'dev_loss': 8245.335743367672, 'dev_mean': 0.8245335743367672, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.6828752642706131, 'recall': 0.7882855399633923, 'f1-score': 0.7318040215236477, 'support': 3278}, 'entailment': {'precision': 0.7936447166921899, 'recall': 0.6227095223790928, 'f1-score': 0.6978623127419626, 'support': 3329}, 'neutral': {'precision': 0.6365149833518313, 'recall': 0.7091190108191654, 'f1-score': 0.6708583126188039, 'support': 3235}, 'micro avg': {'precision': 0.6951, 'recall': 0.6951, 'f1-score': 0.6951, 'support': 10000}, 'macro avg': {'precision': 0.5282587410786586, 'recall': 0.5300285182904126, 'f1-score': 0.5251311617211036, 'support': 10000}, 'weighted avg': {'precision': 0.6939634349290543, 'recall': 0.6951, 'f1-score': 0.6892263862994341, 'support': 10000}}}
+> dev accuracy: 6828/10000 = 0.6828
+{'epoch': 4, 'train_accuracy': 0.8283195492138508, 'train_loss': 96.47458264231682, 'train_mean': 0.0017536050648426214, 'dev_accuracy': 0.683, 'dev_loss': 9469.032451629639, 'dev_mean': 0.9469032451629639, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.7035663338088445, 'recall': 0.7522879804759, 'f1-score': 0.7271118973905351, 'support': 3278}, 'entailment': {'precision': 0.786793953858393, 'recall': 0.5941724241513968, 'f1-score': 0.6770494608933767, 'support': 3329}, 'neutral': {'precision': 0.5988445114292891, 'recall': 0.7369397217928902, 'f1-score': 0.6607538802660754, 'support': 3235}, 'micro avg': {'precision': 0.6828, 'recall': 0.6828, 'f1-score': 0.6828, 'support': 10000}, 'macro avg': {'precision': 0.5223011997741316, 'recall': 0.5208500316050467, 'f1-score': 0.5162288096374967, 'support': 10000}, 'weighted avg': {'precision': 0.6862789509093733, 'recall': 0.6828, 'f1-score': 0.6774909257620979, 'support': 10000}}}
+
+Currently Loaded Modulefiles:
+  1) intel/2019.0              6) /nlpl-numpy/1.16.0/3.7
+  2) openssl.intel/1_1_1       7) /nlpl-scipy/201901/3.7
+  3) python3/3.7.0             8) /nlpl-gensim/3.7.3/3.7
+  4) /nlpl-numpy/1.16.3/3.7    9) cuda/9.0
+  5) gcc/4.9.2                10) /nlpl-pytorch/1.1.0/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26990534.ba+   5924304K   3768611K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26990534         IN5550          6                         05:12:22      0:0 
+
+Job 26990534 ("IN5550") completed on c14-28 at on. 15. mai 13:46:17 +0200 2019
+Starting job 26990535 ("IN5550") on c14-29 at on. 15. mai 08:34:42 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train classififer GRU with batch size 64
+/projects/nlpl/software/scipy/201901/lib/python3.7/site-packages/sklearn/metrics/classification.py:1143: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+MLP_classifier(
+  (encoder): LastStateEncoder(
+    (embedding): Embedding(18926, 100)
+    (RNN): GRU(100, 1024, batch_first=True)
+  )
+  (classifier): Sequential(
+    (inputLayer): Linear(in_features=4096, out_features=512, bias=True)
+    (activation_0): ReLU()
+    (outputLayer): Linear(in_features=512, out_features=5, bias=True)
+  )
+)
+> dev accuracy: 6371/10000 = 0.6371
+saving 0
+{'epoch': 0, 'train_accuracy': 0.624865945651186, 'train_loss': 723.6407495737076, 'train_mean': 0.013153517214827003, 'dev_accuracy': 0.637, 'dev_loss': 8920.204892992973, 'dev_mean': 0.8920204892992973, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.5496531219028742, 'recall': 0.8459426479560708, 'f1-score': 0.6663462693740239, 'support': 3278}, 'entailment': {'precision': 0.774814167031045, 'recall': 0.5322919795734454, 'f1-score': 0.631054131054131, 'support': 3329}, 'neutral': {'precision': 0.684407796101949, 'recall': 0.5644513137557959, 'f1-score': 0.6186684736574622, 'support': 3235}, 'micro avg': {'precision': 0.6371, 'recall': 0.6371, 'f1-score': 0.6371, 'support': 10000}, 'macro avg': {'precision': 0.5022187712589671, 'recall': 0.4856714853213281, 'f1-score': 0.4790172185214042, 'support': 10000}, 'weighted avg': {'precision': 0.6595178516033775, 'recall': 0.6371, 'f1-score': 0.6286454785569142, 'support': 10000}}}
+> dev accuracy: 6839/10000 = 0.6839
+saving 1
+{'epoch': 1, 'train_accuracy': 0.7216759065709352, 'train_loss': 577.1519922912121, 'train_mean': 0.010490811456715661, 'dev_accuracy': 0.684, 'dev_loss': 8228.781416594982, 'dev_mean': 0.8228781416594982, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.630531491453992, 'recall': 0.8215375228798047, 'f1-score': 0.7134719830441119, 'support': 3278}, 'entailment': {'precision': 0.7793077781912914, 'recall': 0.629017723039952, 'f1-score': 0.6961436170212767, 'support': 3329}, 'neutral': {'precision': 0.6745562130177515, 'recall': 0.6343122102009273, 'f1-score': 0.6538155169667039, 'support': 3235}, 'micro avg': {'precision': 0.6839, 'recall': 0.6839, 'f1-score': 0.6839, 'support': 10000}, 'macro avg': {'precision': 0.5210988706657587, 'recall': 0.521216864030171, 'f1-score': 0.5158577792580231, 'support': 10000}, 'weighted avg': {'precision': 0.684338717169742, 'recall': 0.6839, 'f1-score': 0.6771316458869716, 'support': 10000}}}
+> dev accuracy: 6941/10000 = 0.6941
+saving 2
+{'epoch': 2, 'train_accuracy': 0.7885667545214942, 'train_loss': 458.99709391593933, 'train_mean': 0.00834312630947813, 'dev_accuracy': 0.694, 'dev_loss': 8522.685436427593, 'dev_mean': 0.8522685436427593, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.6664088682650168, 'recall': 0.7885906040268457, 'f1-score': 0.7223697079782031, 'support': 3278}, 'entailment': {'precision': 0.7796795338674436, 'recall': 0.64313607689997, 'f1-score': 0.7048559670781893, 'support': 3329}, 'neutral': {'precision': 0.6562962962962963, 'recall': 0.6846986089644513, 'f1-score': 0.670196671709531, 'support': 3235}, 'micro avg': {'precision': 0.6941, 'recall': 0.6941, 'f1-score': 0.6941, 'support': 10000}, 'macro avg': {'precision': 0.5255961746071891, 'recall': 0.5291063224728167, 'f1-score': 0.5243555866914809, 'support': 10000}, 'weighted avg': {'precision': 0.6903159956935964, 'recall': 0.6941, 'f1-score': 0.6882479650136174, 'support': 10000}}}
+> dev accuracy: 7001/10000 = 0.7001
+saving 3
+{'epoch': 3, 'train_accuracy': 0.8533127328910297, 'train_loss': 330.70360650122166, 'train_mean': 0.006011153439993123, 'dev_accuracy': 0.7, 'dev_loss': 9001.764070391655, 'dev_mean': 0.9001764070391655, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.7035472972972973, 'recall': 0.7623550945698597, 'f1-score': 0.7317715959004393, 'support': 3278}, 'entailment': {'precision': 0.69641412779725, 'recall': 0.7759086812856714, 'f1-score': 0.7340153452685423, 'support': 3329}, 'neutral': {'precision': 0.7006206644760862, 'recall': 0.5931993817619784, 'f1-score': 0.6424506193505188, 'support': 3235}, 'micro avg': {'precision': 0.7001, 'recall': 0.7001, 'f1-score': 0.7001, 'support': 10000}, 'macro avg': {'precision': 0.5251455223926584, 'recall': 0.5328657894043773, 'f1-score': 0.527059390129875, 'support': 10000}, 'weighted avg': {'precision': 0.6891098521557724, 'recall': 0.7001, 'f1-score': 0.6920612129359546, 'support': 10000}}}
+> dev accuracy: 6987/10000 = 0.6987
+{'epoch': 4, 'train_accuracy': 0.8942106698173226, 'train_loss': 239.82342677935958, 'train_mean': 0.004359237058608735, 'dev_accuracy': 0.699, 'dev_loss': 10366.553880155087, 'dev_mean': 1.0366553880155087, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.8224970083765457, 'recall': 0.6290420988407566, 'f1-score': 0.7128781331028523, 'support': 3278}, 'entailment': {'precision': 0.6400619058147248, 'recall': 0.8696305196755783, 'f1-score': 0.7373917473255223, 'support': 3329}, 'neutral': {'precision': 0.6835016835016835, 'recall': 0.6275115919629057, 'f1-score': 0.6543110394842868, 'support': 3235}, 'micro avg': {'precision': 0.6987, 'recall': 0.6987, 'f1-score': 0.6987, 'support': 10000}, 'macro avg': {'precision': 0.5365151494232385, 'recall': 0.5315460526198101, 'f1-score': 0.5261452299781654, 'support': 10000}, 'weighted avg': {'precision': 0.7038039224043481, 'recall': 0.6987, 'f1-score': 0.690828785988948, 'support': 10000}}}
+
+Currently Loaded Modulefiles:
+  1) intel/2019.0              6) /nlpl-numpy/1.16.0/3.7
+  2) openssl.intel/1_1_1       7) /nlpl-scipy/201901/3.7
+  3) python3/3.7.0             8) /nlpl-gensim/3.7.3/3.7
+  4) /nlpl-numpy/1.16.3/3.7    9) cuda/9.0
+  5) gcc/4.9.2                10) /nlpl-pytorch/1.1.0/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26990535.ba+   3525904K   1456715K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26990535         IN5550          6                         01:52:38      0:0 
+
+Job 26990535 ("IN5550") completed on c14-29 at on. 15. mai 10:27:19 +0200 2019
+Starting job 26990537 ("IN5550") on c14-33 at on. 15. mai 08:34:42 +0200 2019
+/cluster/home/skjale/in5550-final/abel
+train classififer GRU with batch size 256
+/projects/nlpl/software/scipy/201901/lib/python3.7/site-packages/sklearn/metrics/classification.py:1143: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+MLP_classifier(
+  (encoder): LastStateEncoder(
+    (embedding): Embedding(18926, 100)
+    (RNN): GRU(100, 1024, batch_first=True)
+  )
+  (classifier): Sequential(
+    (inputLayer): Linear(in_features=4096, out_features=512, bias=True)
+    (activation_0): ReLU()
+    (outputLayer): Linear(in_features=512, out_features=5, bias=True)
+  )
+)
+> dev accuracy: 6352/10000 = 0.6352
+saving 0
+{'epoch': 0, 'train_accuracy': 0.5931109697355267, 'train_loss': 190.3715346455574, 'train_mean': 0.0034603568962202564, 'dev_accuracy': 0.635, 'dev_loss': 8914.51511001587, 'dev_mean': 0.8914515110015869, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.5885956644674835, 'recall': 0.7620500305064063, 'f1-score': 0.6641850571656475, 'support': 3278}, 'entailment': {'precision': 0.7233560090702947, 'recall': 0.5749474316611595, 'f1-score': 0.6406694560669456, 'support': 3329}, 'neutral': {'precision': 0.6237942122186495, 'recall': 0.5996908809891809, 'f1-score': 0.61150512214342, 'support': 3235}, 'micro avg': {'precision': 0.6352, 'recall': 0.6352, 'f1-score': 0.6352, 'support': 10000}, 'macro avg': {'precision': 0.4839364714391069, 'recall': 0.4841720857891867, 'f1-score': 0.47908990884400326, 'support': 10000}, 'weighted avg': {'precision': 0.6355443018846754, 'recall': 0.6352, 'f1-score': 0.6288206306769818, 'support': 10000}}}
+> dev accuracy: 6114/10000 = 0.6114
+{'epoch': 1, 'train_accuracy': 0.6906480050895211, 'train_loss': 157.5388355255127, 'train_mean': 0.002863561492784017, 'dev_accuracy': 0.611, 'dev_loss': 9709.011578559875, 'dev_mean': 0.9709011578559875, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.5516362923770332, 'recall': 0.8587553386211104, 'f1-score': 0.6717575468321203, 'support': 3278}, 'entailment': {'precision': 0.8310473815461347, 'recall': 0.40042054671072397, 'f1-score': 0.5404419217514698, 'support': 3329}, 'neutral': {'precision': 0.5970239902824173, 'recall': 0.6077279752704792, 'f1-score': 0.602328431372549, 'support': 3235}, 'micro avg': {'precision': 0.6114, 'recall': 0.6114, 'f1-score': 0.6114, 'support': 10000}, 'macro avg': {'precision': 0.49492691605139627, 'recall': 0.4667259651505784, 'f1-score': 0.4536319749890348, 'support': 10000}, 'weighted avg': {'precision': 0.6506193108142616, 'recall': 0.6114, 'f1-score': 0.5949684871516528, 'support': 10000}}}
+> dev accuracy: 6342/10000 = 0.6342
+{'epoch': 2, 'train_accuracy': 0.7363991638644006, 'train_loss': 138.379760324955, 'train_mean': 0.002515309648731346, 'dev_accuracy': 0.634, 'dev_loss': 9525.997262001038, 'dev_mean': 0.9525997262001038, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.5654008438818565, 'recall': 0.8584502745576571, 'f1-score': 0.6817686250757117, 'support': 3278}, 'entailment': {'precision': 0.8210526315789474, 'recall': 0.4686091919495344, 'f1-score': 0.5966724039013195, 'support': 3329}, 'neutral': {'precision': 0.6301633045148896, 'recall': 0.6083462132921175, 'f1-score': 0.6190625983013526, 'support': 3235}, 'micro avg': {'precision': 0.6342, 'recall': 0.6342, 'f1-score': 0.6342, 'support': 10000}, 'macro avg': {'precision': 0.5041541949939234, 'recall': 0.4838514199498273, 'f1-score': 0.47437590681959596, 'support': 10000}, 'weighted avg': {'precision': 0.662524646687671, 'recall': 0.6342, 'f1-score': 0.622382749109055, 'support': 10000}}}
+> dev accuracy: 6558/10000 = 0.6558
+saving 3
+{'epoch': 3, 'train_accuracy': 0.7910206307370717, 'train_loss': 114.3006392121315, 'train_mean': 0.0020776268147256476, 'dev_accuracy': 0.656, 'dev_loss': 9484.621166944504, 'dev_mean': 0.9484621166944504, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.6266573621772505, 'recall': 0.8218425869432581, 'f1-score': 0.711099379701729, 'support': 3278}, 'entailment': {'precision': 0.8357215967246674, 'recall': 0.4905376990087113, 'f1-score': 0.6182093507476811, 'support': 3329}, 'neutral': {'precision': 0.5954096610621831, 'recall': 0.6896445131375579, 'f1-score': 0.6390718991692924, 'support': 3235}, 'micro avg': {'precision': 0.6558, 'recall': 0.6558, 'f1-score': 0.6558, 'support': 10000}, 'macro avg': {'precision': 0.5144471549910252, 'recall': 0.5005061997723819, 'f1-score': 0.4920951574046756, 'support': 10000}, 'weighted avg': {'precision': 0.6762450282249608, 'recall': 0.6558, 'f1-score': 0.6456400289113959, 'support': 10000}}}
+> dev accuracy: 6212/10000 = 0.6212
+{'epoch': 4, 'train_accuracy': 0.8526220121784968, 'train_loss': 84.60210394859314, 'train_mean': 0.0015378006716094362, 'dev_accuracy': 0.621, 'dev_loss': 13474.593666791916, 'dev_mean': 1.3474593666791916, 'Report': {'-': {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 158}, 'contradiction': {'precision': 0.5432168357760241, 'recall': 0.8819402074435632, 'f1-score': 0.6723255813953488, 'support': 3278}, 'entailment': {'precision': 0.8405296488198043, 'recall': 0.4385701411835386, 'f1-score': 0.5763916304776944, 'support': 3329}, 'neutral': {'precision': 0.6327779666780007, 'recall': 0.5752704791344667, 'f1-score': 0.6026554404145077, 'support': 3235}, 'micro avg': {'precision': 0.6212, 'recall': 0.6212, 'f1-score': 0.6212, 'support': 10000}, 'macro avg': {'precision': 0.5041311128184572, 'recall': 0.4739452069403921, 'f1-score': 0.4628431630718877, 'support': 10000}, 'weighted avg': {'precision': 0.6625824710798267, 'recall': 0.6212, 'f1-score': 0.607228134341513, 'support': 10000}}}
+
+Currently Loaded Modulefiles:
+  1) intel/2019.0              6) /nlpl-numpy/1.16.0/3.7
+  2) openssl.intel/1_1_1       7) /nlpl-scipy/201901/3.7
+  3) python3/3.7.0             8) /nlpl-gensim/3.7.3/3.7
+  4) /nlpl-numpy/1.16.3/3.7    9) cuda/9.0
+  5) gcc/4.9.2                10) /nlpl-pytorch/1.1.0/3.7
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+26990537.ba+   4057748K   2029489K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+26990537         IN5550          6                         01:18:16      0:0 
+
+Job 26990537 ("IN5550") completed on c14-33 at on. 15. mai 09:52:57 +0200 2019
