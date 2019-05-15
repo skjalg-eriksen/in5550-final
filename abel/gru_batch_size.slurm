@@ -9,7 +9,7 @@
 
 # Increase this number when you really need parallel computing
 # (don't set it to more than 6 or 8 cores):
-#SBATCH --ntasks-per-node=8
+#SBATCH --ntasks-per-node=6
 
 source /cluster/bin/jobsetup
 set -o errexit
@@ -17,7 +17,8 @@ set -o errexit
 module purge
 module use -a /projects/nlpl/software/modulefiles/
 module add nlpl-in5550
-module load nlpl-in5550/201901/3.7
+module purge
+module load nlpl-gensim nlpl-pytorch
 
 echo $SUBMITDIR
 
