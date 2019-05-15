@@ -1,5 +1,7 @@
 # in5550-final
-#### abel directory /cluster/home/skjale/in5550-final
+
+**abel directory** /cluster/home/skjale/in5550-final
+
 ## scripts
 
 **runner.py** you can train a classifier and encoder
