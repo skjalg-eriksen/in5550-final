@@ -25,9 +25,13 @@ def train(model, iterator, criterion, optimiser, epoch, args, writer=None):
         optimiser.zero_grad()
         
         predictions, penalty = model(batch)
-        total_penalty += penalty.item()
+        
         gold = batch.gold_label
-        loss = criterion(predictions, gold) + penalty
+        if penalty is not None:
+            loss = criterion(predictions, gold) + penalty
+            total_penalty += penalty.item()
+        else:
+            loss = criterion(predictions, gold)
         
         predmax = predictions.argmax(dim=-1)
         total_loss += loss.item()

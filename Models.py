@@ -30,7 +30,7 @@ class MLP_classifier(nn.Module):
         print(self)
         
     def forward(self, batch):
-        p = torch.tensor(0) # penalization for similar attention dims, used only for sentenceEmbeddingEncoder
+        p = None # penalization for similar attention dims, used only for sentenceEmbeddingEncoder
         # encode 2 sentences to fixed-lenght-representation u and v
         u = self.encoder(batch.sentence1_tok)
         v = self.encoder(batch.sentence2_tok)
