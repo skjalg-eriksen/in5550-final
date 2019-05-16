@@ -37,8 +37,6 @@ used to plot, will use matplotlib to plot a graph of dev_accuracy and print a ta
   --- | --- | ---
   --paths | paths to models directory, can be multiple for multiple graphs togther | none
   --save | a name to save the plot as. | default None, no plot will be saved
-## files and tests
-for each model i store a args.json with arguments, and epochs.json with data on each epoch.
 *****************************************************
 
 [**plotAttention.py** ](https://github.uio.no/skjale/in5550-final/blob/master/attentionPlot.py)
@@ -52,5 +50,9 @@ used to plot attention distrubution generated from an encoder
   --example | index for a spesific example in the data | None, a random example will be chosen
   --embeds | path to a txt model or torchtext glove embeds | None and it will use glove.6b.100d from .vector_cache
   --save | a name to save the plot as. | default None, no plot will be saved
+
+## files, directories and tests
+for each model i store a args.json with arguments, and epochs.json with data on each epoch.
+
 ## model paths
 ### path for best model
