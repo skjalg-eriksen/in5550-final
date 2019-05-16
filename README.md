@@ -6,7 +6,10 @@
  - [abel](https://github.uio.no/skjale/in5550-final/tree/master/abel) hold abel related slurm
  - [models](https://github.uio.no/skjale/in5550-final/tree/master/models) hold model tests, where each model has its own directory with epochs.json and args.json
  - [runs](https://github.uio.no/skjale/in5550-final/tree/master/runs) tensorboard log directory, these are unordered.
-for each model i store a args.json with arguments, and epochs.json with data on each epoch.
+*********
+in each model directory there is epochs.json and args.json
+- args.json is a dump of the argument parser, holds a record of what spesifications the model had.
+- epochs.json has a json object each line that holds information about each epoch
 
 ## model paths
 todo insert some
