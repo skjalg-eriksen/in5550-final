@@ -47,8 +47,10 @@ used to plot, will use matplotlib to plot a graph of dev_accuracy and print a ta
 
   args | description | default
   --- | --- | ---
-  --paths | paths to models directory, can be multiple for multiple graphs togther | none
+  --paths | paths to models directory, can be multiple for multiple graphs togther | None
+  --labels | labels for the models, must be given in same order as models, if left at None will simply use path name | None
   --save | a name to save the plot as. | default None, no plot will be saved
+  --latex | true/false, if true will print latex table | false
 *****************************************************
 
 [**plotAttention.py** ](https://github.uio.no/skjale/in5550-final/blob/master/attentionPlot.py)
