@@ -2,6 +2,15 @@
 
 **abel directory** /cluster/home/skjale/in5550-final
 
+## files, directories and tests
+ - [abel](https://github.uio.no/skjale/in5550-final/tree/master/abel) hold abel related slurm
+ - [models](https://github.uio.no/skjale/in5550-final/tree/master/models) hold model tests, where each model has its own directory with epochs.json and args.json
+ - [runs](https://github.uio.no/skjale/in5550-final/tree/master/runs) tensorboard log directory, these are unordered.
+for each model i store a args.json with arguments, and epochs.json with data on each epoch.
+
+## model paths
+todo insert some
+
 ## scripts
 
 [**eval_on_test.py**](https://github.uio.no/skjale/in5550-final/blob/master/eval_on_test.py)
@@ -50,9 +59,3 @@ used to plot attention distrubution generated from an encoder
   --example | index for a spesific example in the data | None, a random example will be chosen
   --embeds | path to a txt model or torchtext glove embeds | None and it will use glove.6b.100d from .vector_cache
   --save | a name to save the plot as. | default None, no plot will be saved
-
-## files, directories and tests
-for each model i store a args.json with arguments, and epochs.json with data on each epoch.
-
-## model paths
-### path for best model
