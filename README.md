@@ -21,6 +21,7 @@ eval_on_test uses batches of 1 instead of one huge batch like we have done on pr
 you can train a classifier and encoder, if name is specified will make a directory for the model and store relevant data each epoch in a file called epochs.json, very time dev_accuracy goes up it will save the encoder and whole model.
 
 only difference between runner.py and runner_abel should be that runner_abel does not attempt to write with tensorboardX and tqdm is default to false.
+
   args | description | default
   --- | --- | ---
   --model | path to model | none
