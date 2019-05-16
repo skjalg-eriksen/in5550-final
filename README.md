@@ -2,7 +2,7 @@
 
 **abel directory** /cluster/home/skjale/in5550-final
 
-## files, directories and tests
+## files, directories
  - [abel](https://github.uio.no/skjale/in5550-final/tree/master/abel) hold abel related slurm
  - [models](https://github.uio.no/skjale/in5550-final/tree/master/models) hold model tests, where each model has its own directory with epochs.json and args.json
  - [runs](https://github.uio.no/skjale/in5550-final/tree/master/runs) tensorboard log directory, these are unordered.
