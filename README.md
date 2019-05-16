@@ -4,7 +4,7 @@
 
 ## scripts
 
-**eval_on_test.py** 
+[**eval_on_test.py**](https://github.uio.no/skjale/in5550-final/blob/master/eval_on_test.py)
 
 you can do a evaluation on your model
 eval_on_test uses batches of 1 instead of one huge batch like we have done on previous assignments as my pc ran out of memory doing that.
@@ -16,7 +16,7 @@ eval_on_test uses batches of 1 instead of one huge batch like we have done on pr
   --embeds | path to a txt model or torchtext glove embeds | None and it will use glove.6b.100d from .vector_cache
   --tqdm | true/false, if true uses a tqdm to show progress bar in commandline | false
 *****************************************************
-**runner.py** and **runner_abel** 
+[**runner.py**](https://github.uio.no/skjale/in5550-final/blob/master/runner.py) and [**runner_abel**](https://github.uio.no/skjale/in5550-final/blob/master/runner_abel.py)
 
 you can train a classifier and encoder, if name is specified will make a directory for the model and store relevant data each epoch in a file called epochs.json, very time dev_accuracy goes up it will save the encoder and whole model.
 
@@ -29,7 +29,7 @@ only difference between runner.py and runner_abel should be that runner_abel doe
   --embeds | path to a txt model or torchtext glove embeds | None and it will use glove.6b.100d from .vector_cache
 *****************************************************
 
-**plot.py** 
+[**plot.py** ](https://github.uio.no/skjale/in5550-final/blob/master/plot.py)
 
 used to plot, will use matplotlib to plot a graph of dev_accuracy and print a table of model name, dev_accuracy, macro F1-score for given models
 
@@ -41,7 +41,7 @@ used to plot, will use matplotlib to plot a graph of dev_accuracy and print a ta
 for each model i store a args.json with arguments, and epochs.json with data on each epoch.
 *****************************************************
 
-**plotAttention.py** 
+[**plotAttention.py** ](https://github.uio.no/skjale/in5550-final/blob/master/attentionPlot.py)
 
 used to plot attention distrubution generated from an encoder
 
