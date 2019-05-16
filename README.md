@@ -12,7 +12,12 @@ in each model directory there is epochs.json and args.json
 - epochs.json has a json object each line that holds information about each epoch
 
 ## model paths
-todo insert some
+all models are in their directories own directories, inside the directories can 2 models be found, one encoder and one classifier. the classifier contains the entire model, while encoder only contains a encoder model.
+
+  path | description 
+  --- | --- 
+  /cluster/home/skjale/models-final | is a directory with most of the baseline classifiers and encoders.
+  /cluster/home/skjale/in5550-final/abel | has models trained on abel.
 
 ## scripts
 
@@ -80,7 +85,7 @@ only difference between runner.py and runner_abel should be that runner_abel doe
   --classifier_dropout | drop out to preform over the \[u, v |u-v|, u\*v] vector of the sentences | 0
   --encoder |what encoder to use 'sentenceEmbedding', 'convNet', 'BiLSTM', 'LastStateEncoder', 'gruSentenceEmbeddingEncoder' | 'sentenceEmbedding'
   --encoder_hidden_size | hidden size of RNN encoders hidden state,  or filter size in the case of convNet encoder | 1024
-  --encoder_attention_dim | dimension of the hidden layers in the attention MLP that makes the self-attentive sentence embeddings (sentenceEmbedding)
+  --encoder_attention_dim | dimension of the hidden layers in the attention MLP that makes the self-attentive sentence embeddings (sentenceEmbedding) | 512
   --encoder_attention_hops | how many layers of attention in sentenceEmbedding encoder | 4
   --encoder_penalty | penalty coefficient for sentenceEmbedding | 0
   --encoder_pooling | 'max' or 'mean' pooling for BiLSTM encoder | 'max'
