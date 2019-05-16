@@ -15,7 +15,7 @@
 *****************************************************
 **eval_on_test.py** you can do a evaluation on your model
 
-eval_on_test uses batches of 1 instead of one huge batch like we have done on previous batches as my pc ran out of memory doing that.
+eval_on_test uses batches of 1 instead of one huge batch like we have done on previous assignments as my pc ran out of memory doing that.
 
   args | description | default
   --- | --- | ---
