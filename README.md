@@ -13,13 +13,14 @@
   --testfile | path to test data | relative path to NLI5550.test.jsonl
   --embeds | path to a txt model or torchtext glove embeds | None and it will use glove.6b.100d from .vector_cache
 *****************************************************
-**eval_on_test.py** you can do a evaluation on your model
+**eval_on_test.py** you can do a evaluation on your model, eval_on_test uses batches of 1 instead of one huge batch like we have done on previous batches as my pc ran out of memory doing that.
 
   args | description | default
   --- | --- | ---
   --model | path to model | none
   --testfile | path to test data | relative path to NLI5550.test.jsonl
   --embeds | path to a txt model or torchtext glove embeds | None and it will use glove.6b.100d from .vector_cache
+  --tqdm | true/false, if true uses a tqdm to show progress bar in commandline | false
 *****************************************************
 **plotAttention.py** you can do a evaluation on your model
 
