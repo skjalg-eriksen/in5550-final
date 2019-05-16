@@ -16,13 +16,13 @@ def main():
     parser.add_argument('--latex', action='store', default="false")
     args = parser.parse_args()
     
-    args.tqdm = correctBoolean(args.latex, 'latex')
+    args.latex = correctBoolean(args.latex, 'latex')
     
     
     fig = plt.figure(1, figsize=(5,5))
     ax = plt.subplot()
     ax.grid()
-    plt.rcParams.update({'font.size': 11})
+    plt.rcParams.update({'font.size': 12})
     fig.patch.set_facecolor('white')
 
     fig.suptitle('dev_accuracy')
