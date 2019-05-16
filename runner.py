@@ -104,7 +104,7 @@ def main():
     parser.add_argument('--batch_size', action='store',type=int, default=32)
     parser.add_argument('--lr', action='store',type=float, default=1e-3)
     parser.add_argument('--epochs', action='store', type=int, default=5)
-    parser.add_argument('--split', action='store', default=0.1, help="how much of train dataset to use")
+    parser.add_argument('--split', action='store', type=float, default=0.1, help="how much of train dataset to use")
     
     # MLP classifer hyperparameters
     parser.add_argument('--classifier_hidden_size',type=int, default=512)
@@ -167,7 +167,10 @@ def main():
         ]
 
     # load jsonl file with load_jsonl_examples to get a python list with torchtext.Example objects
-    train_dataset = data.Dataset( load_jsonl_examples(args.train, fields) , fields=fields).split(args.split)[0]
+    if args.split >= 1:
+      train_dataset = data.Dataset( load_jsonl_examples(args.train, fields) , fields=fields)
+    else:
+      train_dataset = data.Dataset( load_jsonl_examples(args.train, fields) , fields=fields).split(args.split)[0]
     dev_dataset = data.Dataset( load_jsonl_examples(args.dev, fields) , fields=fields)
     
     if args.testing:
