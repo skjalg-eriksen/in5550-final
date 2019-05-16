@@ -36,18 +36,24 @@ def main():
             accuracy = [ d['dev_accuracy'] for d in data]
             f1 = [ d['Report']['macro avg']['f1-score'] for d in data]
             
-            # get best epoch
-            best_iteration = np.argmax(accuracy)
-            table_elem = {'model': path.split('/')[2], 
-                          'dev_accuracy': accuracy[best_iteration],
-                          'macro F1-score': f1[best_iteration]}
-            table.append(table_elem)
+            
             # plot results
             if args.labels is not None and n < len(args.labels):
                 plot, = plt.plot( accuracy, label=args.labels[n])
+                # get best epoch
+                best_iteration = np.argmax(accuracy)
+                table_elem = {'model': args.labels[n], 
+                              'dev_accuracy': accuracy[best_iteration],
+                              'macro F1-score': f1[best_iteration]}
+                table.append(table_elem)
             else:
                 plot, = plt.plot( accuracy, label=path)
-            
+                # get best epoch
+                best_iteration = np.argmax(accuracy)
+                table_elem = {'model': path, 
+                              'dev_accuracy': accuracy[best_iteration],
+                              'macro F1-score': f1[best_iteration]}
+                table.append(table_elem)
 
             
     vals = ax.get_yticks()

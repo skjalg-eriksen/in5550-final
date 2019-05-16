@@ -77,7 +77,7 @@ def main():
     sentence1 = plt.subplot(211)
     sentence1.yaxis.set_major_formatter(mtick.PercentFormatter())
     A = encoder.AttentionExmaple(example.sentence1_tok)
-    A = torch.squeeze(A)#.mean(0)
+    A = torch.squeeze(A)
     
     x = np.arange(len(A[0]))
     
@@ -101,7 +101,7 @@ def main():
     
 
     fig.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=0.8, wspace=0, hspace=0.8)
-    #    plt.tight_layout()
+    plt.tight_layout()
     if args.save is not None:
         plt.savefig(args.save)
     plt.show()
