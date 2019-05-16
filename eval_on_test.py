@@ -30,6 +30,9 @@ def evaluate(model, iterator):
     predicted = []
     golds = []
     
+    if args.tqdm: pbar = tqdm(total=len(iterator.data()))
+    if args.tqdm: pbar.set_description('Evaluate')
+    
     for n, batch in enumerate(iterator):
         out = model(batch)
         if isinstance(out, tuple):
@@ -41,6 +44,9 @@ def evaluate(model, iterator):
         total += predictions.size(0)
         accuracy += (predictions == gold).nonzero().size(0)
         
+        if args.tqdm: pbar.update( len(batch) )
+        if args.tqdm: pbar.set_postfix(accuracy=accuracy/total)
+        
     accuracy = accuracy / total
     return accuracy, predicted, golds
 
@@ -49,13 +55,15 @@ if __name__ == '__main__':
     parser.add_argument('--modelfile', help="PyTorch model saved with model.save()", action='store', default="./models/convNet_baseline1/convNet_baseline1_classifier")
     parser.add_argument('--testfile', help="Test dataset)", action='store', default="./nli5550/nli5550.test.jsonl")
     parser.add_argument('--embeds', action='store', default=None)
+    parser.add_argument('--tqdm', action='store', default="false")
     args = parser.parse_args()
 
     logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
     logger = logging.getLogger(__name__)
-
+    
+    args.tqdm = correctBoolean(args.tqdm, 'tqdm')  
+    
     logger.info('Loading the model...')
-
     model = torch.load(args.modelfile)  # Loading the model itself
     model.eval()
     print(model)
